@@ -1,0 +1,23 @@
+@import "../../../shared/styles/variables.scss";
+
+.wrapper {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    position: sticky;
+    height: 48px;
+
+    background-color: var(--color-background);
+    z-index: 1000;
+
+    transition: 0.2s;
+
+    border-bottom: 1px solid var(--color-border);
+}
+
+.wrapper.scrolled {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: 0.2s;
+}

@@ -1,0 +1,1 @@
+export { GlobalPage } from './GlobalPage/GlobalPage'

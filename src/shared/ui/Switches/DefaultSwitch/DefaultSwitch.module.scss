@@ -1,0 +1,32 @@
+@import "../../../styles/variables.scss";
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    background-color: var(--color-surface);
+    width: 32px;
+    height: 16px;
+    box-shadow: $shadow-xs;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    position: relative; /* Чтобы позиционировать круг относительно контейнера */
+}
+
+.wrapper.on {
+    justify-content: left; /* Стартовое положение */
+}
+
+.circle {
+    width: 12px;
+    height: 12px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    margin: 1px;
+    position: absolute; /* Позволяет перемещать элемент */
+    transition: transform 0.2s ease; /* Плавный переход */
+}
+
+.wrapper.on .circle {
+    transform: translateX(16px); /* Сдвигаем кружок на 16px вправо */
+}

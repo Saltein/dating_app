@@ -1,0 +1,3 @@
+export { 
+    GlobalPage,
+} from './ui'
