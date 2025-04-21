@@ -1,2 +1,4 @@
 export { DefaultSwitch } from './Switches/DefaultSwitch/DefaultSwitch'
 export { ThemeSwitch } from './Switches/ThemeSwitch/ThemeSwitch'
+export { HeaderLogo } from './Logos/HeaderLogo/HeaderLogo'
+export { DefaultDividerH } from './Dividers/DefaultDividerH/DefaultDividerH'

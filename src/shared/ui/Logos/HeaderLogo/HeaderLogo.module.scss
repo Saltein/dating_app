@@ -1,0 +1,11 @@
+@import '../../../styles/variables.scss';
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+}
+
+.logo {
+    height: 32px;
+}

@@ -7,7 +7,6 @@ export const ThemeSwitch = () => {
     const [isOn, setOn] = useState(false)
 
     useEffect(() => {
-        console.log(isOn)
         let theme = ''
         isOn ? theme = 'dark' : theme = 'light'
         setTheme(theme)
@@ -15,7 +14,7 @@ export const ThemeSwitch = () => {
 
     return (
         <div className={s.wrapper}>
-            <span>Тема</span>
+            <span>Темная тема</span>
             <DefaultSwitch state={isOn} onSwitch={setOn} />
         </div>
     )

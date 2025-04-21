@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import s from './Header.module.scss'
-import { ThemeSwitch } from '../../../shared';
+import { HeaderLogo } from '../../../shared';
+import { UserDropdownMenu } from '../../../features';
 
 export const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false)
-
-
 
     useEffect(() => {
         const toggleScroll = () => {
@@ -18,7 +17,10 @@ export const Header = () => {
 
     return (
         <header className={`${s.wrapper} ${isScrolled ? s.scrolled : ''}`}>
-            <ThemeSwitch />
+            <div className={s.container}>
+                <HeaderLogo />
+                <UserDropdownMenu name={'Никита'} />
+            </div>
         </header>
     )
 }
