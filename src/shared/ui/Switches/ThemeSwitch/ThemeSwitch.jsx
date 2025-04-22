@@ -1,16 +1,16 @@
 import s from './ThemeSwitch.module.scss'
 import { useEffect, useState } from 'react'
 import { DefaultSwitch } from '../DefaultSwitch/DefaultSwitch'
-import { setTheme } from '../../../lib/themeManager'
+import { useTheme } from '../../../context/theme/ThemeContext' // путь может отличаться
 
 export const ThemeSwitch = () => {
-    const [isOn, setOn] = useState(false)
+    const { theme, setTheme } = useTheme()
+
+    const [isOn, setOn] = useState(theme === 'dark') // ← сначала объявляем isOn
 
     useEffect(() => {
-        let theme = ''
-        isOn ? theme = 'dark' : theme = 'light'
-        setTheme(theme)
-    }, [isOn])
+        setTheme(isOn ? 'dark' : 'light')             // ← потом используем
+    }, [isOn, setTheme])
 
     return (
         <div className={s.wrapper}>

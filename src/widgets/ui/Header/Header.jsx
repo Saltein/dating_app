@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import s from './Header.module.scss'
-import { HeaderLogo } from '../../../shared';
+import { HeaderLogo, ThemeSwitch } from '../../../shared';
 import { UserDropdownMenu } from '../../../features';
 
 export const Header = () => {
@@ -19,6 +19,7 @@ export const Header = () => {
         <header className={`${s.wrapper} ${isScrolled ? s.scrolled : ''}`}>
             <div className={s.container}>
                 <HeaderLogo />
+                <ThemeSwitch />
                 <UserDropdownMenu name={'Никита'} />
             </div>
         </header>

@@ -1,6 +1,27 @@
+@import '../../../shared/styles/variables.scss';
+
 .wrapper {
     width: 100vw;
     height: 100vh;
     background-color: var(--color-background);
     transition: 0.2s;
+}
+
+.pageSpace {
+    display: flex;
+    
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: $spacing-lg;
+
+    gap: $spacing-lg;
+}
+
+.nav {
+    flex: 1;
+}
+
+.page {
+    flex: 4;
 }

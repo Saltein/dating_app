@@ -23,10 +23,6 @@
     border: 1px solid var(--color-border);
 }
 
-.wrapper * {
-    user-select: none;
-}
-
 .button {
     display: flex;
     align-items: center;

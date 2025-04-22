@@ -1,0 +1,42 @@
+@import '../../../styles/variables.scss';
+
+
+.link {
+    display: flex;
+    gap: $spacing-xxs;
+    height: 64px;
+    align-items: center;
+    padding: $spacing-lg;
+    transition: $transition-medium;
+}
+
+.link:hover {
+    background-color: var(--color-background);
+    transition: $transition-fast;
+}
+
+.link.current.dark {
+    background-color: var(--color-primary);
+    transition: $transition-medium;
+}
+
+.link.current.dark:hover {
+    background-color: var(--color-primary-hover);
+    transition: $transition-fast;
+}
+
+.link.current.light {
+    background-color: var(--color-accent);
+    transition: $transition-medium;
+}
+
+.link.current.light:hover {
+    background-color: var(--color-accent-hover);
+    transition: $transition-fast;
+}
+
+.icon {
+    width: 24px;
+    color: var(--color-text);
+    pointer-events: none;
+}

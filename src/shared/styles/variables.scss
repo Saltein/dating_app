@@ -16,6 +16,7 @@ $text-color: var(--color-text);
     --color-primary: #A30B37; // Основной цвет (например, кнопки, ссылки, активные элементы)
     --color-primary-hover: #770828; // Ховер-состояние для основного цвета
     --color-accent: #facc15; // Дополнительный акцентный цвет (например, выделение важных элементов)
+    --color-accent-hover: #ffe16b;
 
     // Базовые цвета — фон и обрамление
     --color-background: #f9fafb; // Общий фон страницы
@@ -169,9 +170,9 @@ $shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.2); // оверлеи, тултипы
 // ================================
 
 // Временные параметры анимаций: для hover, открытия меню и т.д.
-$transition-fast: 150ms ease-in-out; // быстрый отклик на hover
-$transition-medium: 300ms ease-in-out; // стандартная анимация
-$transition-slow: 500ms ease-in-out; // плавное появление, модалки
+$transition-fast: 50ms ease-in-out; // быстрый отклик на hover
+$transition-medium: 150ms ease-in-out; // стандартная анимация
+$transition-slow: 300ms ease-in-out; // плавное появление, модалки
 
 
 // ================================
