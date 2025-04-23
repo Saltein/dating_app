@@ -1,15 +1,16 @@
 @import '../../../shared/styles/variables.scss';
 
 .wrapper {
-    width: 100vw;
+    width: 100%;
+    min-height: fit-content;
     height: 100vh;
     background-color: var(--color-background);
-    transition: 0.2s;
+    transition: background-color 0.2s;
 }
 
 .pageSpace {
     display: flex;
-    
+
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
@@ -18,10 +19,32 @@
     gap: $spacing-lg;
 }
 
-.nav {
+.left_nav {
+    display: block;
     flex: 1;
+}
+
+.bottom_nav {
+    display: none;
 }
 
 .page {
     flex: 4;
+}
+
+
+
+
+@media (max-width: $breakpoint-md) {
+    .pageSpace {
+        flex-direction: column;
+    }
+
+    .left_nav {
+        display: none;
+    }
+
+    .bottom_nav {
+        display: block;
+    }
 }

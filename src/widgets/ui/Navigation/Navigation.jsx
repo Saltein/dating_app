@@ -8,7 +8,7 @@ import { ReactComponent as SettingsIcon } from '../../../shared/assets/icons/set
 import { useState } from 'react'
 
 export const Navigation = () => {
-    const [currentPage, setCurrentPage] = useState('/dating')
+    const [currentPage, setCurrentPage] = useState('/')
 
     const handleSelectPage = (page) => {
         setCurrentPage(page)
@@ -21,25 +21,25 @@ export const Navigation = () => {
                 href={'/profile'} onClick={handleSelectPage}
                 currentPage={currentPage}
             />
-            <DefaultDividerH margin={'36px'} />
+            <DefaultDividerH margin={'24px'} />
             <NavButton
                 title={'Анкеты'} Icon={ProfileIcon}
                 href={'/dating'} onClick={handleSelectPage}
                 currentPage={currentPage}
             />
-            <DefaultDividerH margin={'36px'} />
+            <DefaultDividerH margin={'24px'} />
             <NavButton
                 title={'Лайки'} Icon={LikeIcon}
                 href={'/likes'} onClick={handleSelectPage}
                 currentPage={currentPage}
             />
-            <DefaultDividerH margin={'36px'} />
+            <DefaultDividerH margin={'24px'} />
             <NavButton
                 title={'Чаты'} Icon={ChatIcon}
                 href={'/chats'} onClick={handleSelectPage}
                 currentPage={currentPage}
             />
-            <DefaultDividerH margin={'36px'} />
+            <DefaultDividerH margin={'24px'} />
             <NavButton
                 title={'Настройки'} Icon={SettingsIcon}
                 href={'/settings'} onClick={handleSelectPage}

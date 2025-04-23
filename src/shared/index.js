@@ -4,6 +4,7 @@ export {
     HeaderLogo,
     DefaultDividerH,
     NavButton,
+    SettingsButton,
 } from './ui'
 
 export {

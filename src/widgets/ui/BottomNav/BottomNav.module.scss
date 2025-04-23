@@ -1,0 +1,19 @@
+@import '../../../shared/styles/variables.scss';
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    overflow: hidden;
+}

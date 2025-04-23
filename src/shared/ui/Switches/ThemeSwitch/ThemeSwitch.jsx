@@ -14,7 +14,6 @@ export const ThemeSwitch = () => {
 
     return (
         <div className={s.wrapper}>
-            <span>Темная тема</span>
             <DefaultSwitch state={isOn} onSwitch={setOn} />
         </div>
     )

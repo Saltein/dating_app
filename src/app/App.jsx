@@ -1,5 +1,5 @@
 import { GlobalPage } from '../pages';
-import s from './App.module.css'
+import s from './App.module.scss'
 
 function App() {
   return (

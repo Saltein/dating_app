@@ -19,7 +19,6 @@ export const Header = () => {
         <header className={`${s.wrapper} ${isScrolled ? s.scrolled : ''}`}>
             <div className={s.container}>
                 <HeaderLogo />
-                <ThemeSwitch />
                 <UserDropdownMenu name={'Никита'} />
             </div>
         </header>
