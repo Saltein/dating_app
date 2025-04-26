@@ -59,7 +59,7 @@ export const AuthForm = ({ inputs = [], buttonTitle }) => {
                             type={input.type}
                             placeholder={input.placeholder}
                         />
-                        : <InputCode/>
+                        : <InputCode key={index}/>
                     )
                 })}
             </div>

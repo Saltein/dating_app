@@ -27,3 +27,16 @@
     width: 150%; // или сколько тебе нужно
     padding: 0 $spacing-md;
 }
+
+.errorMessage {
+    text-align: center;
+    color: var(--color-error);
+    animation: blinkBorder 0.5s ease-in-out 2, shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    50% { transform: translateX(3px); }
+    75% { transform: translateX(-2px); }
+}

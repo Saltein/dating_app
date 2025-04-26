@@ -55,44 +55,44 @@ const registrationInputs = [
 ]
 
 export const AuthFormSwitcher = () => {
-
     const tabs = ['login', 'registration']
     const [currentTab, setCurrentTab] = useState(tabs[0])
     const [height, setHeight] = useState(0)
+    const contentRef = useRef()
 
-    const contentRef = useRef(null)
-
+    // Обновляем высоту при изменениях размера контента
     useEffect(() => {
-        if (contentRef.current) {
-            setHeight(contentRef.current.scrollHeight)
-        }
-    }, [currentTab])
+        if (!contentRef.current) return
 
-    const handleLoginTab = (tab) => {
-        setCurrentTab(tab)
-    }
-    const handleRegistrationTab = (tab) => {
-        setCurrentTab(tab)
-    }
+        const observer = new ResizeObserver(entries => {
+            for (let entry of entries) {
+                // Используем scrollHeight, чтобы учесть весь контент
+                setHeight(entry.target.scrollHeight)
+            }
+        })
+
+        observer.observe(contentRef.current)
+
+        return () => {
+            observer.disconnect()
+        }
+    }, []) // пустой массив — создаём один раз при монтировании
 
     return (
         <div className={styles.wrapper}>
             <div className={styles.tabs}>
-                <FormSwitchTab title={'Вход'} onClick={handleLoginTab} name={tabs[0]} currentTab={currentTab} />
-                <FormSwitchTab title={'Регистрация'} onClick={handleRegistrationTab} name={tabs[1]} currentTab={currentTab} />
+                <FormSwitchTab title="Вход" onClick={() => setCurrentTab(tabs[0])} name={tabs[0]} currentTab={currentTab} />
+                <FormSwitchTab title="Регистрация" onClick={() => setCurrentTab(tabs[1])} name={tabs[1]} currentTab={currentTab} />
             </div>
-
             <div
                 className={styles.contentWrapper}
                 style={{ height: `${height}px` }}
             >
                 <div ref={contentRef}>
-                    {currentTab === tabs[0] && (
-                        <AuthForm buttonTitle="Войти" inputs={loginInputs} />
-                    )}
-                    {currentTab === tabs[1] && (
-                        <AuthForm buttonTitle="Зарегистрироваться" inputs={registrationInputs} />
-                    )}
+                    {currentTab === tabs[0]
+                        ? <AuthForm buttonTitle="Войти" inputs={loginInputs} />
+                        : <AuthForm buttonTitle="Зарегистрироваться" inputs={registrationInputs} />
+                    }
                 </div>
             </div>
         </div>
