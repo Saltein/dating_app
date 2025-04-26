@@ -18,7 +18,7 @@ const loginInputs = [
 
 const registrationInputs = [
     {
-        name: 'name',
+        name: 'first_name',
         placeholder: 'Имя',
         type: 'text',
     },

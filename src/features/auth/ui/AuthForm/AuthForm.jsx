@@ -4,22 +4,28 @@ import s from './AuthForm.module.scss'
 import { useTheme } from '../../../../shared/context/theme/ThemeContext';
 import { InputCode } from '../../..';
 
-const PHONE_PATTERN = '^(?=(?:.*\\d){11,})[+\\d\\s\\-\\(\\)]+$'
-
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const PHONE_REGEX = new RegExp(PHONE_PATTERN);
 
 export const AuthForm = ({ inputs = [], buttonTitle }) => {
     const { theme } = useTheme()
 
-    const [formData, setFormData] = useState({})
+    const [formData, setFormData] = useState(
+        inputs.reduce((acc, input) => {
+            acc[input.name] = '';
+            return acc;
+        }, {})
+    );
 
     const handleOnChange = (e) => {
-        const { name, value } = e.target
+        const { name, value } = e.target;
+        if (!name) {
+            console.error("Input doesn't have name attribute");
+            return;
+        }
         setFormData(prev => ({
             ...prev,
-            [name]: value // Динамическое обновление поля по имени инпута
-        }))
+            [name]: value
+        }));
     }
 
 
@@ -27,10 +33,10 @@ export const AuthForm = ({ inputs = [], buttonTitle }) => {
     const handleSubmit = () => {
         console.log(formData)
 
-        if (Object.keys(formData).length !== 7) {
-            console.log("Заполните все поля!", formData.length)
-            return
-        }
+        // if (Object.keys(formData).length !== 6) {
+        //     console.log("Заполните все поля!", formData.length)
+        //     return
+        // }
 
         if (!EMAIL_REGEX.test(formData.email)) {
             console.log("Некорректный email");
