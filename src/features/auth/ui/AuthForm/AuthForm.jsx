@@ -3,10 +3,11 @@ import { DefaultButton } from '../../../../shared'
 import s from './AuthForm.module.scss'
 import { useTheme } from '../../../../shared/context/theme/ThemeContext';
 import { InputCode } from '../../..';
+import { authApi } from '../../../../shared/api/authApi';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export const AuthForm = ({ inputs = [], buttonTitle }) => {
+export const AuthForm = ({ inputs = [], buttonTitle, isLogin = false }) => {
     const { theme } = useTheme()
 
     const [formData, setFormData] = useState(
@@ -28,15 +29,13 @@ export const AuthForm = ({ inputs = [], buttonTitle }) => {
         }));
     }
 
-
-    // TO DO вывод ошибок на экран, отправка формы
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         console.log(formData)
 
-        // if (Object.keys(formData).length !== 6) {
-        //     console.log("Заполните все поля!", formData.length)
-        //     return
-        // }
+        if (Object.keys(formData).length !== 6) {
+            console.log("Заполните все поля!", formData.length)
+            return
+        }
 
         if (!EMAIL_REGEX.test(formData.email)) {
             console.log("Некорректный email");
@@ -48,7 +47,18 @@ export const AuthForm = ({ inputs = [], buttonTitle }) => {
             return
         }
 
-        console.log("Успешная (тест) регистрация", formData)
+        try {
+            let response
+            if (isLogin) {
+                const { email, password } = formData;
+                response = await authApi.login({ email, password });
+            } else {
+                response = await authApi.register(formData);
+            }
+            console.log("Успешная (тест) регистрация", formData, response)
+        } catch (error) {
+            console.error('Ошибка аутентификации:', error.message);
+        }
     }
 
     return (
@@ -56,16 +66,16 @@ export const AuthForm = ({ inputs = [], buttonTitle }) => {
             <div className={s.inputs}>
                 {inputs.map((input, index) => {
                     return (
-                        input.name !== 'code' 
-                        ? <input
-                            className={`${s.input} ${theme === 'dark' ? s.dark : s.light}`}
-                            onChange={handleOnChange}
-                            name={input.name}
-                            key={index}
-                            type={input.type}
-                            placeholder={input.placeholder}
-                        />
-                        : <InputCode key={index}/>
+                        input.name !== 'code'
+                            ? <input
+                                className={`${s.input} ${theme === 'dark' ? s.dark : s.light}`}
+                                onChange={handleOnChange}
+                                name={input.name}
+                                key={index}
+                                type={input.type}
+                                placeholder={input.placeholder}
+                            />
+                            : <InputCode key={index} />
                     )
                 })}
             </div>
