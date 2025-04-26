@@ -28,11 +28,11 @@
 .wrapper.dark:active {
     filter: brightness(0.7);
     transform: scale(0.97);
-    transition: background-color $transition-fast, transform 0.05s; // 👈 быстрое при нажатии
+    transition: background-color $transition-fast, transform 0.05s;
 }
 
 .wrapper.light:active {
     filter: brightness(1.3);
     transform: scale(0.97);
-    transition: background-color $transition-fast, transform 0.05s; // 👈 быстрое при нажатии
+    transition: background-color $transition-fast, transform 0.05s;
 }
