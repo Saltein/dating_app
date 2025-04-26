@@ -1,6 +1,8 @@
 @import '../../../shared/styles/variables.scss';
 
 .wrapper {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     min-height: fit-content;
     height: 100vh;
@@ -10,6 +12,7 @@
 
 .pageSpace {
     display: flex;
+    flex: 1;
 
     max-width: 1200px;
     width: 100%;
@@ -26,9 +29,11 @@
 
 .bottom_nav {
     display: none;
+    height: 64px;
 }
 
 .page {
+    display: flex;
     flex: 4;
 }
 

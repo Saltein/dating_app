@@ -1,0 +1,29 @@
+@import '../../../../shared/styles/variables.scss';
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+}
+
+.wrapper.sent {
+    gap: $spacing-md;
+}
+
+.input {
+    width: 0;
+    all: unset;
+    height: 48px;
+    background-color: var(--color-surface);
+    border: none;
+    border-radius: $border-radius-lg;
+    padding: 0;
+    transition: width 0.3s ease, padding 0.3s ease; // укажем отдельно
+    overflow: hidden;
+}
+
+.input.sent {
+    border: 1px solid var(--color-border);
+    width: 150%; // или сколько тебе нужно
+    padding: 0 $spacing-md;
+}

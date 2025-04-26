@@ -170,7 +170,7 @@ $shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.2); // оверлеи, тултипы
 // ================================
 
 // Временные параметры анимаций: для hover, открытия меню и т.д.
-$transition-fast: 50ms ease-in-out; // быстрый отклик на hover
+$transition-fast: 100ms ease-in-out; // быстрый отклик на hover
 $transition-medium: 150ms ease-in-out; // стандартная анимация
 $transition-slow: 300ms ease-in-out; // плавное появление, модалки
 
