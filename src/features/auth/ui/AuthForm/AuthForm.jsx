@@ -17,16 +17,26 @@ export const AuthForm = ({ inputs = [], buttonTitle, isLogin = false }) => {
         }, {})
     );
 
+    const [isCodeVerified, setCodeVerified] = useState(false)
+
     const handleOnChange = (e) => {
         const { name, value } = e.target;
         if (!name) {
             console.error("Input doesn't have name attribute");
             return;
         }
+        if (name === 'code') {
+            return;
+        }
+    
         setFormData(prev => ({
             ...prev,
             [name]: value
         }));
+    
+        if (name === 'email') {
+            setCodeVerified(false); // Сбрасываем подтверждение при изменении email
+        }
     }
 
     const handleSubmit = async () => {
@@ -39,7 +49,12 @@ export const AuthForm = ({ inputs = [], buttonTitle, isLogin = false }) => {
 
         if (!EMAIL_REGEX.test(formData.email)) {
             console.log("Некорректный email");
-            return;
+            return
+        }
+
+        if (!isCodeVerified) {
+            console.log("Подтвердите Email")
+            return
         }
 
         if (formData.password !== formData.passwordCheck) {
@@ -75,7 +90,7 @@ export const AuthForm = ({ inputs = [], buttonTitle, isLogin = false }) => {
                                 type={input.type}
                                 placeholder={input.placeholder}
                             />
-                            : <InputCode key={index} />
+                            : <InputCode key={index} email={formData.email} setState={setCodeVerified} />
                     )
                 })}
             </div>

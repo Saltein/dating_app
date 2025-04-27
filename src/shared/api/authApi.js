@@ -1,9 +1,51 @@
-const BASE_URL = 'http://localhost:3000'; // Замените на ваш реальный URL API
+const BASE_URL = 'http://localhost:5000';
 
 export const authApi = {
+    async sendCode(formData) {
+        try {
+            const response = await fetch(`${BASE_URL}/auth/send-code`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Send code failed');
+            }
+
+            return await response.json();
+        } catch (error) {
+
+        }
+    },
+
+    async verifyCode(formData) {
+        try {
+            const response = await fetch(`${BASE_URL}/auth/verify-code`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Verify code failed');
+            }
+
+            return await response.json();
+        } catch (error) {
+
+        }
+    },
+
     async register(formData) {
         try {
-            const response = await fetch(`${BASE_URL}/register`, {
+            const response = await fetch(`${BASE_URL}/auth/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -25,7 +67,7 @@ export const authApi = {
 
     async login(formData) {
         try {
-            const response = await fetch(`${BASE_URL}/login`, {
+            const response = await fetch(`${BASE_URL}/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
