@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { DefaultButton } from '../../../../shared'
+import { DefaultButton, WarningMessage } from '../../../../shared'
 import s from './InputCode.module.scss'
 import { authApi } from '../../../../shared/api/authApi';
 
@@ -69,7 +69,7 @@ export const InputCode = ({ email, setState }) => {
     }, [email]);
 
     return (
-        <>   
+        <>
             <div className={`${s.wrapper} ${isCodeSent ? s.sent : ''} ${isCodeVerified ? s.verified : ''}`}>
                 <input
                     className={`${s.input} ${isCodeSent ? s.sent : ''}`}
@@ -88,8 +88,8 @@ export const InputCode = ({ email, setState }) => {
                     onClick={isCodeSent ? handleCheckCode : handleSendCode}
                 />
             </div>
-            {error && <div className={s.errorMessage}>{error}</div>}
-            {isCodeVerified && <div className={s.message}>Email подтверждён!</div>}
+            {error && <WarningMessage type='error' message={error} />}
+            {isCodeVerified && <WarningMessage type='success' message='Email подтвержден!' />}
         </>
     )
 }

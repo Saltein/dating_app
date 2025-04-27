@@ -1,0 +1,28 @@
+@import '../../../styles/variables.scss';
+
+.error {
+    text-align: center;
+    color: var(--color-error);
+    animation: h_shake 0.3s ease-in-out;
+}
+
+.success {
+    text-align: center;
+    color: var(--color-success);
+    animation: v_shake 0.3s ease-in-out;
+}
+
+@keyframes h_shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    50% { transform: translateX(3px); }
+    75% { transform: translateX(-2px); }
+}
+
+@keyframes v_shake {
+    0%  { transform: translateY(-30px); } 
+    25% { transform: translateY(-3px); }
+    50% { transform: translateY(7px); }
+    75% { transform: translateY(-2px); }
+    100% { transform: translateY(0px);}
+}

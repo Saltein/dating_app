@@ -8,6 +8,7 @@ export {
     DefaultButton,
     FormSwitchTab,
     GoBackButton,
+    WarningMessage,
 } from './ui'
 
 export {

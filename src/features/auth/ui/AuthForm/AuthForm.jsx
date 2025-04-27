@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { DefaultButton } from '../../../../shared'
+import { DefaultButton, WarningMessage } from '../../../../shared'
 import s from './AuthForm.module.scss'
 import { useTheme } from '../../../../shared/context/theme/ThemeContext';
 import { InputCode } from '../../..';
@@ -7,17 +7,19 @@ import { authApi } from '../../../../shared/api/authApi';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export const AuthForm = ({ inputs = [], buttonTitle, isLogin = false }) => {
+export const AuthForm = ({ inputs = [], buttonTitle, isLogin = false, setCurrentTab, tabs = [] }) => {
     const { theme } = useTheme()
 
     const [formData, setFormData] = useState(
         inputs.reduce((acc, input) => {
-            acc[input.name] = '';
+            if (input.name !== 'code') {
+                acc[input.name] = '';
+            }
             return acc;
         }, {})
     );
-
     const [isCodeVerified, setCodeVerified] = useState(false)
+    const [error, setError] = useState('')
 
     const handleOnChange = (e) => {
         const { name, value } = e.target;
@@ -28,37 +30,41 @@ export const AuthForm = ({ inputs = [], buttonTitle, isLogin = false }) => {
         if (name === 'code') {
             return;
         }
-    
+
         setFormData(prev => ({
             ...prev,
             [name]: value
         }));
-    
+
         if (name === 'email') {
             setCodeVerified(false); // Сбрасываем подтверждение при изменении email
         }
+
+        setError('')
     }
 
     const handleSubmit = async () => {
         console.log(formData)
+        setError('')
 
-        if (Object.keys(formData).length !== 6) {
-            console.log("Заполните все поля!", formData.length)
-            return
+        const allFieldsFilled = Object.values(formData).every(value => value.trim() !== '');
+        if (!allFieldsFilled) {
+            setError('Заполните все поля!')
+            return;
         }
 
         if (!EMAIL_REGEX.test(formData.email)) {
-            console.log("Некорректный email");
+            setError('Некорректный email!')
             return
         }
 
         if (!isCodeVerified) {
-            console.log("Подтвердите Email")
+            setError('Подтвердите email!')
             return
         }
 
         if (formData.password !== formData.passwordCheck) {
-            console.log("Пароли не совпадают")
+            setError('Пароли не совпадают!')
             return
         }
 
@@ -70,9 +76,15 @@ export const AuthForm = ({ inputs = [], buttonTitle, isLogin = false }) => {
             } else {
                 response = await authApi.register(formData);
             }
-            console.log("Успешная (тест) регистрация", formData, response)
+            if(response) {
+                console.log("Успешная (тест) регистрация", formData, response)
+                setCurrentTab(tabs[0])
+            } else {
+                setError("Ошибка регистрации")
+            }
         } catch (error) {
             console.error('Ошибка аутентификации:', error.message);
+            setError(`Ошибка аутентификации: ${error.message}`)
         }
     }
 
@@ -95,6 +107,7 @@ export const AuthForm = ({ inputs = [], buttonTitle, isLogin = false }) => {
                 })}
             </div>
 
+            {error && <WarningMessage type='error' message={error} />}
             <DefaultButton title={buttonTitle} color={'#8a4fff'} onClick={handleSubmit} />
         </div>
     )
