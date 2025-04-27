@@ -1,0 +1,41 @@
+@import '../../../styles/variables.scss';
+
+.wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 64px;
+    border-radius: $border-radius-md;
+    background-color: var(--color-neutral);
+    box-shadow: $shadow-md;
+}
+
+.wrapper.likes {
+    background-color: var(--color-likes);
+}
+
+.wrapper.views {
+    background-color: var(--color-views);
+}
+
+.value_icon {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.value {
+    font-size: $font-size-2xl;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    color: var(--color-text);
+}
+
+.title {
+    font-size: $font-size-xs;
+    text-align: center;
+}

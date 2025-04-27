@@ -40,8 +40,9 @@ $text-color: var(--color-text);
     --chat-bubble-user-bg: #10a37f; // Фон сообщения пользователя
 
     // Другие — менее общие случаи использования
-    --scrollbar-thumb: #d1d5db; // Цвет ползунка скроллбара
-    --scrollbar-track: transparent; // Цвет трека скроллбара
+    --color-likes: rgba(255, 0, 0, 0.3);
+    --color-views: rgba(0, 191, 255, 0.3);
+    --color-neutral: rgba(255, 255, 255, 0.3);
 }
 
 [data-theme="dark"] {

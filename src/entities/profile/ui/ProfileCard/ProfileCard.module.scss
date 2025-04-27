@@ -1,0 +1,29 @@
+@import '../../../../shared/styles/variables.scss';
+
+.wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+}
+
+.photos {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: $border-radius-md;
+    box-shadow: $shadow-md;
+}
+
+.photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.params {
+    display: flex;
+    height: 64px;
+    gap: $spacing-md;
+}

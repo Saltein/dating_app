@@ -9,6 +9,7 @@ export {
     FormSwitchTab,
     GoBackButton,
     WarningMessage,
+    StatBadge,
 } from './ui'
 
 export {

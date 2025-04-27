@@ -7,7 +7,7 @@ import { logoutUser } from '../features/auth/model/authActions'
 
 function App() {
   const dispatch = useDispatch()
-  const token = useSelector(state => state.auth.token)
+  const token = useSelector(state => state.token)
 
   useEffect(() => {
     if (token && isTokenExpired(token)) {
