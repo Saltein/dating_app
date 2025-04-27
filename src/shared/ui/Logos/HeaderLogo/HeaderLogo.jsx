@@ -5,8 +5,8 @@ import logoLetters from './assets/logoLetters.png'
 export const HeaderLogo = ({ onClick }) => {
     return (
         <div className={s.wrapper} onClick={onClick}>
-            <img src={logo} className={s.logo} />
-            <img src={logoLetters} className={s.logo} />
+            <img src={logo} className={s.logo} alt='logo' />
+            <img src={logoLetters} className={s.logo} alt='logo' />
         </div>
     )
 }

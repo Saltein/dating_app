@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import s from './Header.module.scss'
-import { DefaultButton, HeaderLogo, ThemeSwitch } from '../../../shared';
+import { DefaultButton, HeaderLogo } from '../../../shared';
 import { UserDropdownMenu } from '../../../features';
 import { useNavigate } from 'react-router-dom';
 
@@ -31,7 +31,11 @@ export const Header = ({ token }) => {
                 <HeaderLogo onClick={handleLogoCkick} />
                 {token
                     ? <UserDropdownMenu name={'Никита'} />
-                    : <DefaultButton title={'Войти'} onClick={handleAuthBtnCkick} width={'96px'} height='40px' />
+                    :
+                    <div className={s.authButtons}>
+                        <DefaultButton title={'Войти'} onClick={handleAuthBtnCkick} width={'96px'} height='40px' />
+                        <div onClick={handleAuthBtnCkick} className={s.registerLink}>Зарегистрироваться</div>
+                    </div>
                 }
             </div>
         </header>
