@@ -1,7 +1,15 @@
+@import '../../../styles/variables.scss';
+
 .wrapper {
     display: flex;
     justify-content: space-between;
     height: 64px;
     padding: 24px;
     cursor: pointer;
+    transition: $transition-medium;
+}
+
+.wrapper:hover {
+    background-color: var(--color-background);
+    transition: $transition-fast;
 }

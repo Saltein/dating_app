@@ -4,7 +4,7 @@ import { DefaultButton, HeaderLogo, ThemeSwitch } from '../../../shared';
 import { UserDropdownMenu } from '../../../features';
 import { useNavigate } from 'react-router-dom';
 
-export const Header = () => {
+export const Header = ({ token }) => {
     const navigate = useNavigate()
     const [isScrolled, setIsScrolled] = useState(false)
 
@@ -28,9 +28,11 @@ export const Header = () => {
     return (
         <header className={`${s.wrapper} ${isScrolled ? s.scrolled : ''}`}>
             <div className={s.container}>
-                <HeaderLogo onClick={handleLogoCkick}/>
-                <DefaultButton title={'Войти'} onClick={handleAuthBtnCkick} width={'96px'} height='40px'/>
-                <UserDropdownMenu name={'Никита'} />
+                <HeaderLogo onClick={handleLogoCkick} />
+                {token
+                    ? <UserDropdownMenu name={'Никита'} />
+                    : <DefaultButton title={'Войти'} onClick={handleAuthBtnCkick} width={'96px'} height='40px' />
+                }
             </div>
         </header>
     )
