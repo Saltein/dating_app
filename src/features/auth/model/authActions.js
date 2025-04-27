@@ -6,7 +6,6 @@ export const loginUser = (credentials) => async (dispatch) => {
         const response = await authApi.login(credentials);
         if (response?.token) {
             dispatch(setToken(response.token));
-            console.log('токен', response.token)
         }
     } catch (error) {
         console.error('Ошибка логина:', error.message);
