@@ -1,5 +1,80 @@
 @import '../../../../shared/styles/variables.scss';
 
 .wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
     flex: 1;
+    background-color: transparent;
+    max-height: 100%;
+}
+
+.wrapper.open {
+    background-color: var(--color-surface);
+    transition: background-color $transition-medium;
+    padding-bottom: $spacing-md;
+
+    max-height: 80vh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.scrollableContent {
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.scrollableContent.open {
+    opacity: 1;
+}
+
+.scrollableContent.visible {
+    opacity: 1;
+}
+
+.name_age {
+    font-size: $font-size-2xl;
+    font-weight: 600;
+}
+
+.upIcon {
+    position: absolute;
+    display: none;
+    width: 20px;
+    height: 20px;
+    margin: 0 auto;
+    top: 40px;
+}
+
+.upIcon.open {
+    transform: rotate(180deg);
+    top: 16px;
+}
+
+::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+    border-radius: 6px;
+}
+
+@media (max-width: $breakpoint-md) {
+    .upIcon {
+        position: relative;
+        display: block;
+    }
 }

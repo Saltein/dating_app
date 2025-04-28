@@ -12,11 +12,12 @@
     background-color: var(--color-surface);
     padding: $spacing-md;
     gap: $spacing-md;
+    overflow: hidden;
 }
 
 .profileSummary {
     flex: 1;
-    background-color: rgb(255, 0, 0);
+    height: 100%;
 }
 
 @media (max-width: $breakpoint-md) {
@@ -25,11 +26,14 @@
         border-radius: 0;
         border: none;
         padding-bottom: $spacing-2xl;
+        gap: 0;
     }
 
     .profileSummary{
+        margin: 0 $spacing-md;
         position: absolute;
-        top: 96%;
+        top: 90%;
+        left: 0;
         z-index: 100;
     }
 }

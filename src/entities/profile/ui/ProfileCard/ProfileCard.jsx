@@ -1,17 +1,24 @@
 import { StatBadge } from '../../../../shared'
 import s from './ProfileCard.module.scss'
-import photo from './photo.jpg'
 import { ReactComponent as LikeIcon } from '../../../../shared/assets/icons/heart.svg'
+import { PhotoList } from './PhotoList/PhotoList'
 
-export const ProfileCard = ({ isProfilePage = false }) => {
+export const ProfileCard = ({ isProfilePage = false, data }) => {
 
-    const views = 45
-    const likes = 3
+    let photo
+    let views
+    let likes
+
+    if (data) {
+        photo = data.photo
+        views = data.views
+        likes = data.likes
+    }
 
     return (
         <div className={s.wrapper}>
             <div className={s.photos}>
-                <img className={s.photo} src={photo} alt='photo' />
+                {data ? <PhotoList photos={photo} /> : "Данные отсутствуют"}
             </div>
             {
                 isProfilePage
@@ -21,7 +28,7 @@ export const ProfileCard = ({ isProfilePage = false }) => {
                         <StatBadge title={'Лайки'} value={likes} Icon={LikeIcon} type={'likes'} />
                     </div>
                     :
-                    <div className={s.buttons}>
+                    <div className={s.params}>
                         abiba
                     </div>
             }

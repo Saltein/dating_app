@@ -1,0 +1,44 @@
+@import '../../../../../../shared/styles/variables.scss';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+}
+
+.title {
+    font-size: $font-size-base;
+    font-weight: 600;
+}
+
+.bubbleList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+}
+
+.filmsBooks {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+    background-color: var(--color-items);
+    padding: 6px 8px;
+    border: 1px solid var(--color-border);
+    border-radius: $border-radius-md;
+}
+
+.param {
+    display: flex;
+    gap: $spacing-xs;
+}
+
+.icon {
+    height: 20px;
+    width: 20px;
+    flex-shrink: 0;
+}
+
+.text {
+    flex: 1 1 auto; // текст занимает оставшееся место и может переноситься
+    word-break: break-word; // если текст очень длинный, он переносится
+}

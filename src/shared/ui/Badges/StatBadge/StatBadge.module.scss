@@ -23,6 +23,7 @@
     display: flex;
     align-items: center;
     margin: 0 auto;
+    gap: $spacing-xxs;
 }
 
 .value {
@@ -38,4 +39,21 @@
 .title {
     font-size: $font-size-xs;
     text-align: center;
+}
+
+@media (max-width: $breakpoint-md) {
+    .wrapper {
+        height: 48px;
+        flex-direction: row-reverse;
+        align-items: center;
+    }
+
+    .title {
+        flex: 1
+    }
+
+    .value_icon {
+        padding: 0 $spacing-lg;
+        justify-content: center;
+    }
 }

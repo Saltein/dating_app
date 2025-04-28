@@ -1,0 +1,14 @@
+@import '../../../../styles/variables.scss';
+
+.wrapper {
+    display: flex;
+    background-color: var(--color-items);
+    font-size: $font-size-sm;
+    width: fit-content;
+    padding: 6px 8px;
+    border: 1px solid var(--color-border);
+    border-radius: 1000px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: $shadow-xs;
+}

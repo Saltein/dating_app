@@ -10,6 +10,7 @@ export {
     GoBackButton,
     WarningMessage,
     StatBadge,
+    Bubble,
 } from './ui'
 
 export {
