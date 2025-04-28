@@ -8,16 +8,18 @@
     flex: 1;
     background-color: transparent;
     max-height: 100%;
+    padding: 0 $spacing-md;
+    border-radius: $border-radius-lg;
 }
 
 .wrapper.open {
     background-color: var(--color-surface);
     transition: background-color $transition-medium;
-    padding-bottom: $spacing-md;
 
     max-height: 80vh;
     overflow-y: auto;
     overscroll-behavior: contain;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .scrollableContent {
@@ -46,8 +48,8 @@
 .upIcon {
     position: absolute;
     display: none;
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
     margin: 0 auto;
     top: 40px;
 }

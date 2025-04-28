@@ -30,10 +30,11 @@
     }
 
     .profileSummary{
+        width: 100%;
         margin: 0 $spacing-md;
         position: absolute;
         top: 90%;
-        left: 0;
+        left: -$spacing-md;
         z-index: 100;
     }
 }

@@ -28,12 +28,14 @@ export const UserDropdownMenu = ({ name }) => {
                 <span className={`${s.name} ${isOpen ? s.open : ''}`}>{name}</span>
                 <img className={`${s.downImage} ${isOpen ? s.open : ''}`} src={downIcon} alt='downImage' />
             </div>
-            {isOpen && <DefaultDividerH margin={'16px'} />}
             {isOpen &&
-                <div className={s.exit}>
-                    <img className={s.logoutImage} src={logoutIcon} alt='logoutImage' />
-                    <div className={s.exitButton} onClick={handleLogout}>Выйти</div>
-                </div>
+                <>
+                    <DefaultDividerH margin={'16px'} />
+                    <div className={s.exit} onClick={handleLogout}>
+                        <img className={s.logoutImage} src={logoutIcon} alt='logoutImage' />
+                        <div className={s.exitButton} >Выйти</div>
+                    </div>
+                </>
             }
         </div>
     )
