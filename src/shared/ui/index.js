@@ -10,5 +10,6 @@ export { FormSwitchTab } from './Buttons/FormSwitchTab/FormSwitchTab'
 export { GoBackButton } from './Buttons/GoBackButton/GoBackButton'
 export { WarningMessage } from './Warnings/WarningMessage/WarningMessage'
 export { StatBadge } from './Badges/StatBadge/StatBadge'
+export { EditButton } from './Buttons/EditButton/EditButton'
 
 export { Bubble } from './profile/settings/Bubble/Bubble'

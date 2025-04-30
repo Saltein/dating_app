@@ -45,6 +45,9 @@ $text-color: var(--color-text);
     --color-likes: rgba(255, 0, 0, 0.3);
     --color-views: rgba(0, 191, 255, 0.3);
     --color-neutral: rgba(255, 255, 255, 0.3);
+
+    --brightness-hover: 0.8;
+    --brightness-active: 0.6;
 }
 
 [data-theme="dark"] {
@@ -79,6 +82,9 @@ $text-color: var(--color-text);
     // Другие — оформление вспомогательных элементов
     --scrollbar-thumb: #374151; // Цвет ползунка в тёмной теме
     --scrollbar-track: transparent; // Трек остаётся прозрачным
+    
+    --brightness-hover: 1.4;
+    --brightness-active: 1.8;
 }
 
 

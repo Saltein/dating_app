@@ -51,12 +51,16 @@
     width: 40px;
     height: 40px;
     margin: 0 auto;
-    top: 40px;
+    top: 36px;
+    background-color: var(--color-background);
+    border-radius: $border-radius-lg;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 0 10px 10px var(--color-surface)
 }
 
 .upIcon.open {
     transform: rotate(180deg);
-    top: 16px;
+    top: 10px;
 }
 
 ::-webkit-scrollbar {

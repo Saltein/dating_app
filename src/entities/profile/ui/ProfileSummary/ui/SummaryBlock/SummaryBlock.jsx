@@ -2,8 +2,9 @@ import { Bubble } from '../../../../../../shared'
 import s from './SummaryBlock.module.scss'
 import { ReactComponent as FilmIcon } from '../../../../../../shared/assets/icons/film.svg'
 import { ReactComponent as BookIcon } from '../../../../../../shared/assets/icons/book.svg'
+import { DefaultDividerV } from '../../../../../../shared/ui'
 
-export const SummaryBlock = ({ title = 'no title', params, isBubble = true }) => {
+export const SummaryBlock = ({ title = 'no title', params, isBubble = true, isEditing }) => {
     return (
         <div className={s.wrapper}>
             <span className={s.title}>{title}</span>
@@ -15,6 +16,7 @@ export const SummaryBlock = ({ title = 'no title', params, isBubble = true }) =>
                             <Bubble title={param} key={index} />
                         )
                     })}
+                    {isEditing && <Bubble title={'+'} isButton />}
                 </div>
                 :
                 <div className={s.filmsBooks}>

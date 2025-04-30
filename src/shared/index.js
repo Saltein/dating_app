@@ -11,6 +11,7 @@ export {
     WarningMessage,
     StatBadge,
     Bubble,
+    EditButton,
 } from './ui'
 
 export {

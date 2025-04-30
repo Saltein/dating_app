@@ -1,0 +1,29 @@
+@import '../../../styles/variables.scss';
+
+.wrapper {
+    display: flex;
+    position: absolute;
+    right: -8px;
+    top: -8px;
+    background-color: var(--color-surface);
+    border-radius: $border-radius-lg;
+    padding: $spacing-xxs;
+    border: 1px solid var(--color-border);
+    transition: $transition-medium;
+}
+
+.wrapper:hover {
+    filter: brightness(var(--brightness-hover));
+    transition: $transition-fast;
+}
+
+.wrapper:active {
+    filter: brightness(var(--brightness-active));
+    transition: $transition-fast;
+}
+
+.editIcon {
+    height: 28px;
+    width: 28px;
+}
+

@@ -29,7 +29,7 @@ export const ProfilePage = () => {
         <div className={s.wrapper}>
             <ProfileCard isProfilePage data={profileData} />
             <div className={s.profileSummary}>
-                <ProfileSummary dataObj={profileData} />
+                <ProfileSummary isProfilePage dataObj={profileData} />
             </div>
         </div>
     )
