@@ -3,8 +3,9 @@ import { useState, useEffect } from 'react'
 import s from './ProfileSummary.module.scss'
 import { SummaryBlock } from './ui/SummaryBlock/SummaryBlock'
 import { ReactComponent as UpIcon } from '../../../../shared/assets/icons/up.svg'
-import { Bubble, DefaultButton, EditButton } from '../../../../shared'
+import { DefaultButton, EditButton } from '../../../../shared'
 import { ProfileParametersWindow } from '../../../../features/profile/ui/ProfileParametersWindow/ProfileParametersWindow'
+import { SummaryContent } from './ui/SummaryContent/SummaryContent'
 
 export const ProfileSummary = ({ isProfilePage = false, isEditing = false, dataObj }) => {
     const data = dataObj || {};
@@ -38,8 +39,16 @@ export const ProfileSummary = ({ isProfilePage = false, isEditing = false, dataO
         setIsEditMode(true)
     }
 
-    const Container = isMobile ? motion.div : 'div';
+    const handleSubmit = () => {
+        setIsEditMode(false)
+    }
 
+    useEffect(() => {
+        console.log('isEditMode', isEditMode)
+    }, [isEditMode])
+
+    const Container = isMobile ? motion.div : 'div'
+    
     return (
         <Container
             className={`${s.wrapper} ${isOpen ? s.open : ''}`}
@@ -51,7 +60,7 @@ export const ProfileSummary = ({ isProfilePage = false, isEditing = false, dataO
                 animate: controls
             })}
         >
-            {isEditMode && <ProfileParametersWindow setState={setIsEditMode} data={data} />}
+            {isEditMode && <ProfileParametersWindow setState={setIsEditMode} data={data} onClick={handleSubmit} />}
             {isProfilePage && <EditButton onClick={handleEdit} />}
             <UpIcon className={`${s.upIcon} ${isOpen ? s.open : ''}`} />
             <div className={s.header}>
@@ -61,35 +70,10 @@ export const ProfileSummary = ({ isProfilePage = false, isEditing = false, dataO
             </div>
 
             <div className={`${s.scrollableContent} ${isOpen ? s.open : ''} ${!isMobile ? s.visible : ''}`}>
-                <div className={s.description}>{data.description}</div>
-                {/* <div className={s.quality}>
-                    {data.quality
-                        ? <SummaryBlock title="Личные качества" params={data.quality} />
-                        : 'Данных нет'}
-                </div> */}
-                <div className={s.interest}>
-                    {data.interest
-                        ? <SummaryBlock title="Увлечения" params={data.interest} isEditing={isEditing} />
-                        : 'Данных нет'}
-                </div>
-                <div className={s.music}>
-                    {data.music
-                        ? <SummaryBlock title="Музыка" params={data.music} isEditing={isEditing} />
-                        : 'Данных нет'}
-                </div>
-                <div className={s.films_books}>
-                    {data.films_books
-                        ? <SummaryBlock title="Фильмы и книги" params={data.films_books} isBubble={false} isEditing={isEditing} />
-                        : 'Данных нет'}
-                </div>
-                <div className={s.games}>
-                    {data.games
-                        ? <SummaryBlock title="Видеоигры" params={data.games} isEditing={isEditing} />
-                        : 'Данных нет'}
-                </div>
+                <SummaryContent data={data} />
             </div>
 
-            {isEditing && <DefaultButton title={'Сохранить'} />}
+            {isEditing && <DefaultButton title={'Сохранить'} onClick={handleSubmit} />}
         </Container>
     )
 }

@@ -2,7 +2,6 @@ import { Bubble } from '../../../../../../shared'
 import s from './SummaryBlock.module.scss'
 import { ReactComponent as FilmIcon } from '../../../../../../shared/assets/icons/film.svg'
 import { ReactComponent as BookIcon } from '../../../../../../shared/assets/icons/book.svg'
-import { DefaultDividerV } from '../../../../../../shared/ui'
 
 export const SummaryBlock = ({ title = 'no title', params, isBubble = true, isEditing }) => {
     return (

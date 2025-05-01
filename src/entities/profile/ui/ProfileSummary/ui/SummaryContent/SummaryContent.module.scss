@@ -1,0 +1,60 @@
+@import '../../../../../../shared/styles/variables.scss';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 4px;
+}
+
+.placeholder {
+    color: var(--color-placeholder);
+}
+
+.placeholder:hover {
+    animation: blink 0.8s;
+    animation-iteration-count: infinite;
+}
+
+.photoList {
+    display: flex;
+    max-width: 100%;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+}
+
+.description {
+    all: unset;
+    box-sizing: border-box;
+    background-color: transparent;
+    height: fit-content;
+    word-wrap: break-word;
+    max-width: 100%;
+    width: 100%;
+    &[contenteditable='true'] {
+        border: 1px solid var(--color-border);
+        border-radius: $border-radius-md;
+        padding: $spacing-sm;
+        &:focus {
+            all: unset;
+            border-radius: $border-radius-md;
+            padding: $spacing-sm;
+            border: 1px solid var(--color-accent);
+        }
+    }
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        filter: none;
+    }
+
+    50% {
+        filter: brightness(var(--brightness-hover));
+    }
+}

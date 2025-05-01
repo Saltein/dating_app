@@ -8,14 +8,12 @@
     flex: 1;
     background-color: transparent;
     max-height: 100%;
-    padding: 0 $spacing-md;
     border-radius: $border-radius-lg;
 }
 
 .wrapper.open {
     background-color: var(--color-surface);
     transition: background-color $transition-medium;
-
     max-height: 80vh;
     overflow-y: auto;
     overscroll-behavior: contain;
@@ -27,7 +25,6 @@
     display: flex;
     flex-direction: column;
     gap: $spacing-md;
-    flex: 1;
     overflow-y: auto;
     padding-right: 4px;
 }
@@ -82,5 +79,9 @@
     .upIcon {
         position: relative;
         display: block;
+    }
+
+    .wrapper {
+        padding: 0 $spacing-md $spacing-md $spacing-md;
     }
 }

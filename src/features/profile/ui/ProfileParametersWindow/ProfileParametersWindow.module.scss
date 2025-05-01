@@ -10,7 +10,7 @@
     background-color: var(--color-surface-transparent);
     height: 100%;
     width: 100%;
-    z-index: 1000;
+    z-index: 1500;
 
     backdrop-filter: blur(10px);
 }
@@ -25,6 +25,21 @@
     max-width: 1200px;
     animation: appear 0.5s ease-in-out;
     height: fit-content;
+    position: relative;
+
+    flex-direction: column;
+    gap: $spacing-md;
+    flex: 1;
+    max-height: 100%;
+}
+
+.scrollableContent {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 4px;
 }
 
 @keyframes appear {

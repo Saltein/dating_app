@@ -38,7 +38,7 @@
     border-radius: 50%;
     background-color: var(--color-placeholder);
     transition: background-color 0.3s;
-    z-index: 120;
+    z-index: 10;
 
     &.active {
         background-color: var(--color-text);
