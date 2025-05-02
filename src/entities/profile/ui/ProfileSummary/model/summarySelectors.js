@@ -1,0 +1,12 @@
+export const getId = (state) => state.summary.id
+export const getName = (state) => state.summary.name
+export const getAge = (state) => state.summary.age
+export const getDescription = (state) => state.summary.description
+export const getInterest = (state) => state.summary.interest
+export const getMusic = (state) => state.summary.music
+export const getFilmsBooks = (state) => state.summary.films_books
+export const getGames = (state) => state.summary.games
+export const getLikes = (state) => state.summary.likes
+export const getViews = (state) => state.summary.views
+export const getPhoto = (state) => state.summary.photo
+export const getQuality = (state) => state.summary.quality

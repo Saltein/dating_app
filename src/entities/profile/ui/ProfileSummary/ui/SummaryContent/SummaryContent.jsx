@@ -1,12 +1,16 @@
-import { useState, useEffect, useRef } from 'react'
+import s from './SummaryContent.module.scss'
+import { useEffect, useRef } from 'react'
+import { useDispatch } from 'react-redux'
 import { SummaryBlock } from '../SummaryBlock/SummaryBlock'
 import { PhotoItem } from './PhotoItem/PhotoItem'
-import s from './SummaryContent.module.scss'
+import { setDescription } from '../../model/summarySlice'
 
 export const SummaryContent = ({ data, isEditing = false }) => {
-    const [description, setDescription] = useState(data.description)
+    // Consts ----------------------------------------------------
     const descriptionRef = useRef()
+    const dispatch = useDispatch()
 
+    // Functions -------------------------------------------------
     const hasContent = (value) => {
         if (isEditing) return true
         if (Array.isArray(value)) return value.length > 0
@@ -16,14 +20,6 @@ export const SummaryContent = ({ data, isEditing = false }) => {
         return !!value
     }
 
-    const handleAdd = () => {
-        console.log('handleAdd')
-    }
-
-    const handleChange = (e) => {
-        setDescription(e.target.value)
-    }
-
     const adjustHeight = () => {
         const textarea = descriptionRef.current;
 
@@ -31,19 +27,39 @@ export const SummaryContent = ({ data, isEditing = false }) => {
         textarea.style.height = `${textarea.scrollHeight + 8}px`;
     };
 
-    useEffect(() => {
-        isEditing && adjustHeight();
-    }, [description])
+    // Handlers --------------------------------------------------
+    const handleAdd = () => {
+        console.log('handleAdd')
+    }
 
-    const Input = isEditing ? "textarea" : "div"
+    const handleChange = (e) => {
+        dispatch(setDescription(e.target.value))
+        isEditing && adjustHeight()
+    }
+
+    // Effects ---------------------------------------------------
+    useEffect(() => {
+        isEditing && adjustHeight()
+    }, [])
 
     return (
         <div className={s.wrapper}>
-            <Input className={s.description} ref={descriptionRef} contentEditable={isEditing} spellCheck="false" onChange={handleChange}>
-                {data.description
-                    ? data.description
-                    : <span className={s.placeholder}>Расскажите о себе...</span>}
-            </Input>
+            {isEditing ? (
+                <textarea
+                    className={s.description}
+                    ref={descriptionRef}
+                    value={data.description || ''}
+                    spellCheck="false"
+                    onChange={handleChange}
+                    onInput={adjustHeight}
+                />
+            ) : (
+                <div className={s.description}>
+                    {data.description || (
+                        <span className={s.placeholder}>Расскажите о себе...</span>
+                    )}
+                </div>
+            )}
 
             {isEditing && hasContent(data.photo) &&
                 <div className={s.photoList}>

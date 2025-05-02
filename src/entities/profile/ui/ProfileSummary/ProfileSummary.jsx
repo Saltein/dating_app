@@ -1,30 +1,25 @@
+import s from './ProfileSummary.module.scss'
 import { motion, useAnimation } from 'framer-motion'
 import { useState, useEffect } from 'react'
-import s from './ProfileSummary.module.scss'
-import { SummaryBlock } from './ui/SummaryBlock/SummaryBlock'
+import { useDispatch } from 'react-redux'
 import { ReactComponent as UpIcon } from '../../../../shared/assets/icons/up.svg'
 import { DefaultButton, EditButton } from '../../../../shared'
 import { ProfileParametersWindow } from '../../../../features/profile/ui/ProfileParametersWindow/ProfileParametersWindow'
 import { SummaryContent } from './ui/SummaryContent/SummaryContent'
 
 export const ProfileSummary = ({ isProfilePage = false, isEditing = false, dataObj }) => {
+
+    // Consts ----------------------------------------------------
     const data = dataObj || {};
+    const dispatch = useDispatch()
     const controls = useAnimation();
+
+    // States (local) --------------------------------------------
     const [isOpen, setIsOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const [isEditMode, setIsEditMode] = useState(false);
 
-    useEffect(() => {
-        const checkScreenSize = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
-        checkScreenSize();
-        window.addEventListener('resize', checkScreenSize);
-        return () => {
-            window.removeEventListener('resize', checkScreenSize);
-        };
-    }, []);
-
+    // Handlers --------------------------------------------------
     const handleTap = () => {
         if (isMobile) {
             setIsOpen(prev => !prev);
@@ -43,12 +38,22 @@ export const ProfileSummary = ({ isProfilePage = false, isEditing = false, dataO
         setIsEditMode(false)
     }
 
+    // Effects ---------------------------------------------------
     useEffect(() => {
-        console.log('isEditMode', isEditMode)
-    }, [isEditMode])
+        const checkScreenSize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+        return () => {
+            window.removeEventListener('resize', checkScreenSize);
+        };
+    }, []);
 
+
+    // Components ------------------------------------------------
     const Container = isMobile ? motion.div : 'div'
-    
+
     return (
         <Container
             className={`${s.wrapper} ${isOpen ? s.open : ''}`}
