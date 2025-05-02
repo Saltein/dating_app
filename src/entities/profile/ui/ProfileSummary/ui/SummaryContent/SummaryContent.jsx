@@ -24,7 +24,7 @@ export const SummaryContent = ({ data, isEditing = false }) => {
         const textarea = descriptionRef.current;
 
         textarea.style.height = 'auto';
-        textarea.style.height = `${textarea.scrollHeight + 8}px`;
+        textarea.style.height = `${textarea.scrollHeight - 24}px`;
     };
 
     // Handlers --------------------------------------------------
