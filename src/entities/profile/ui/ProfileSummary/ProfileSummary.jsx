@@ -1,18 +1,37 @@
 import s from './ProfileSummary.module.scss'
 import { motion, useAnimation } from 'framer-motion'
 import { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { ReactComponent as UpIcon } from '../../../../shared/assets/icons/up.svg'
-import { DefaultButton, EditButton } from '../../../../shared'
+import { EditButton } from '../../../../shared'
 import { ProfileParametersWindow } from '../../../../features/profile/ui/ProfileParametersWindow/ProfileParametersWindow'
 import { SummaryContent } from './ui/SummaryContent/SummaryContent'
+import { profileApi } from '../../../../shared/api/profileApi'
+import {
+    getAge, getDescription,
+    getFilmsBooks, getGames,
+    getInterest, getMusic,
+    getName, getPhoto,
+    getQuality
+} from '../../../../entities/profile/ui/ProfileSummary/model/summarySelectors'
 
 export const ProfileSummary = ({ isProfilePage = false, isEditing = false, dataObj }) => {
 
     // Consts ----------------------------------------------------
     const data = dataObj || {};
-    const dispatch = useDispatch()
     const controls = useAnimation();
+
+    const updatedData = {
+        name: useSelector(getName),
+        age: useSelector(getAge),
+        description: useSelector(getDescription),
+        interest: useSelector(getInterest),
+        music: useSelector(getMusic),
+        films_books: useSelector(getFilmsBooks),
+        games: useSelector(getGames),
+        photo: useSelector(getPhoto),
+        quality: useSelector(getQuality),
+    };
 
     // States (local) --------------------------------------------
     const [isOpen, setIsOpen] = useState(false);
@@ -34,8 +53,13 @@ export const ProfileSummary = ({ isProfilePage = false, isEditing = false, dataO
         setIsEditMode(true)
     }
 
-    const handleSubmit = () => {
-        setIsEditMode(false)
+    const handleSubmit = async () => {
+        try {
+            await profileApi.updateProfile(updatedData);
+            setIsEditMode(false);
+        } catch (error) {
+            console.error('Ошибка при отправке обновлённых данных:', error);
+        }
     }
 
     // Effects ---------------------------------------------------
@@ -77,8 +101,6 @@ export const ProfileSummary = ({ isProfilePage = false, isEditing = false, dataO
             <div className={`${s.scrollableContent} ${isOpen ? s.open : ''} ${!isMobile ? s.visible : ''}`}>
                 <SummaryContent data={data} />
             </div>
-
-            {isEditing && <DefaultButton title={'Сохранить'} onClick={handleSubmit} />}
         </Container>
     )
 }

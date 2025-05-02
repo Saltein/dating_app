@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = process.env.REACT_APP_BASE_URL;;
 
 export const profileApi = {
     async getProfile() {
@@ -21,25 +21,28 @@ export const profileApi = {
             console.error('Error fetching profile:', error);
             throw error;
         }
+    },
+
+    async updateProfile(profileData) {
+        try {
+            const response = await fetch(`${BASE_URL}/profile`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(profileData)
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to update profile');
+            }
+
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Error updating profile:', error);
+            throw error;
+        }
     }
 };
-
-
-
-// const obj = {
-//     id: '',
-//     photo: [],
-//     name: '',
-//     age: '',
-//     description: '',
-//     quality: [],
-//     interest: [],
-//     music: [],
-//     films_books: {
-//         films: '',
-//         books: '',
-//     },
-//     games: [],
-//     likes: 0,
-//     views: 0,
-// }
