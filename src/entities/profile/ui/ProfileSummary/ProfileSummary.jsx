@@ -15,7 +15,7 @@ import {
     getQuality
 } from '../../../../entities/profile/ui/ProfileSummary/model/summarySelectors'
 
-export const ProfileSummary = ({ isProfilePage = false, isEditing = false, dataObj }) => {
+export const ProfileSummary = ({ isProfilePage = false, dataObj }) => {
 
     // Consts ----------------------------------------------------
     const data = dataObj || {};
