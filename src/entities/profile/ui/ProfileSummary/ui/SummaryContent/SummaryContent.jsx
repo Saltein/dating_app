@@ -73,10 +73,10 @@ export const SummaryContent = ({ data, isEditing = false }) => {
                     <PhotoItem />
                 </div>
             }
-            {hasContent(data.quality) && <SummaryBlock title="Личные качества" params={data.quality} paramKey={'quality'} />}
+            {/* {hasContent(data.quality) && <SummaryBlock title="Личные качества" params={data.quality} paramKey={'quality'} />}
             {hasContent(data.interest) && <SummaryBlock title="Увлечения" params={data.interest} isEditing={isEditing} paramKey={'interest'} />}
             {hasContent(data.music) && <SummaryBlock title="Музыка" params={data.music} isEditing={isEditing} paramKey={'music'} />}
-            {hasContent(data.films_books) && <SummaryBlock title="Фильмы и книги" params={data.films_books} isBubble={false} isEditing={isEditing} />}
+            {hasContent(data.films_books) && <SummaryBlock title="Фильмы и книги" params={data.films_books} isBubble={false} isEditing={isEditing} />} */}
             {hasContent(data.games) && <SummaryBlock title="Видеоигры" params={data.games} isEditing={isEditing} paramKey={'games'} />}
         </div>
     )

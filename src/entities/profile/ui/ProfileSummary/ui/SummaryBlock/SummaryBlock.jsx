@@ -4,14 +4,41 @@ import { ReactComponent as FilmIcon } from '../../../../../../shared/assets/icon
 import { ReactComponent as BookIcon } from '../../../../../../shared/assets/icons/book.svg'
 import { useDispatch } from 'react-redux'
 import { removeParam } from '../../model/summarySlice'
+import { ListModal } from '../ListModal/ListModal'
+import { useEffect, useState } from 'react'
+import { profileApi } from '../../../../../../shared/api/profileApi'
 
 export const SummaryBlock = ({ title = 'no title', params, isBubble = true, isEditing, paramKey }) => {
+    // Consts ----------------------------------------------------
     const dispatch = useDispatch()
 
+    // States (local) --------------------------------------------
+    const [optionList, setOptionList] = useState([])
+    const [isModalOpen, setIsModalOpen] = useState(false)
+
+    // Handlers --------------------------------------------------
     const handleRemove = (id) => {
         dispatch(removeParam({ key: paramKey, value: id }))
         console.log('remove', id)
     }
+
+    const handleOpenModal = () => {
+        setIsModalOpen(true)
+    }
+
+    // Effects ---------------------------------------------------
+    useEffect(() => {
+        const fetchOptions = async () => {
+            try {
+                let response = await profileApi.getOptions(paramKey)
+                console.log('response getOptions', response)
+                setOptionList(response) // предполагается, что response — это массив
+            } catch (error) {
+                console.error('Ошибка получения списка опций:', error);
+            }
+        }
+        fetchOptions()
+    }, [paramKey])
 
     return (
         <div className={s.wrapper}>
@@ -24,7 +51,7 @@ export const SummaryBlock = ({ title = 'no title', params, isBubble = true, isEd
                             <Bubble title={param.title} key={index} isEditing={isEditing} onClick={isEditing ? () => handleRemove(param.id) : undefined} />
                         )
                     })}
-                    {isEditing && <Bubble title={'+'} isButton />}
+                    {isEditing && <Bubble title={'+'} isButton onClick={handleOpenModal} />}
                 </div>
                 :
                 <div className={s.filmsBooks}>
@@ -38,7 +65,7 @@ export const SummaryBlock = ({ title = 'no title', params, isBubble = true, isEd
                     </div>
                 </div>
             }
-
+            {isModalOpen && <ListModal optionList={optionList} currentOptions={params} />}
         </div>
     )
 }

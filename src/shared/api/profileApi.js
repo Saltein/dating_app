@@ -12,14 +12,14 @@ export const profileApi = {
             });
 
             if (!response.ok) {
-                throw new Error('Profile not found');
+                throw new Error('Profile not found')
             }
 
-            const data = await response.json();
-            return data;
+            const data = await response.json()
+            return data
         } catch (error) {
-            console.error('Error fetching profile:', error);
-            throw error;
+            console.error('Error fetching profile:', error)
+            throw error
         }
     },
 
@@ -35,14 +35,36 @@ export const profileApi = {
             });
 
             if (!response.ok) {
-                throw new Error('Failed to update profile');
+                throw new Error('Failed to update profile')
             }
 
-            const data = await response.json();
-            return data;
+            const data = await response.json()
+            return data
         } catch (error) {
-            console.error('Error updating profile:', error);
-            throw error;
+            console.error('Error updating profile:', error)
+            throw error
         }
-    }
-};
+    },
+
+    async getOptions(option) {
+        try {
+            const response = await fetch(`${BASE_URL}/list/${option}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'application/json'
+                },
+            })
+    
+            if (!response.ok) {
+                throw new Error(`Failed fetch list "${option}`);
+            }
+    
+            const data = await response.json()
+            return data
+        } catch (error) {
+            console.error('Error fetch list:', error)
+            throw error
+        }
+    },
+}

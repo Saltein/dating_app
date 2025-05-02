@@ -16,6 +16,10 @@
     box-shadow: $shadow-xs;
 }
 
+.wrapper.current {
+    background-color: var(--color-accent);
+}
+
 .wrapper.button:hover {
     filter: brightness(var(--brightness-hover));
     animation: pulse 0.5s;
