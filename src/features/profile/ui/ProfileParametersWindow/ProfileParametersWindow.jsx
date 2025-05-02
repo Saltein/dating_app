@@ -6,8 +6,8 @@ import s from './ProfileParametersWindow.module.scss'
 
 export const ProfileParametersWindow = ({ setState, data, onClick }) => {
     return (
-        <div className={s.wrapper} onClick={() => { setState(false) }}>
-            <div className={s.window} onClick={(e) => e.stopPropagation()}>
+        <div className={s.wrapper} onMouseDown={() => { setState(false) }}>
+            <div className={s.window} onMouseDown={(e) => e.stopPropagation()}>
                 <div className={s.header}>
                     <div className={s.name_age}>
                         {data.name || 'Данных нет'}, {data.age || 'Данных нет'}

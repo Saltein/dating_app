@@ -24,7 +24,7 @@ export const SummaryContent = ({ data, isEditing = false }) => {
         const textarea = descriptionRef.current;
 
         textarea.style.height = 'auto';
-        textarea.style.height = `${textarea.scrollHeight - 24}px`;
+        textarea.style.height = `${textarea.scrollHeight - 16}px`;
     };
 
     // Handlers --------------------------------------------------
@@ -45,14 +45,16 @@ export const SummaryContent = ({ data, isEditing = false }) => {
     return (
         <div className={s.wrapper}>
             {isEditing ? (
-                <textarea
-                    className={s.description}
-                    ref={descriptionRef}
-                    value={data.description || ''}
-                    spellCheck="false"
-                    onChange={handleChange}
-                    onInput={adjustHeight}
-                />
+                <>
+                    <textarea
+                        className={s.description}
+                        ref={descriptionRef}
+                        value={data.description || ''}
+                        spellCheck="false"
+                        onChange={handleChange}
+                        onInput={adjustHeight}
+                    />
+                </>
             ) : (
                 <div className={s.description}>
                     {data.description || (
