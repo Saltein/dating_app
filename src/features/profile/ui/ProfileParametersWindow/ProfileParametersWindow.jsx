@@ -1,5 +1,3 @@
-import { ProfileSummary } from '../../../../entities'
-import { SummaryBlock } from '../../../../entities/profile/ui/ProfileSummary/ui/SummaryBlock/SummaryBlock'
 import { SummaryContent } from '../../../../entities/profile/ui/ProfileSummary/ui/SummaryContent/SummaryContent'
 import { DefaultButton } from '../../../../shared'
 import s from './ProfileParametersWindow.module.scss'

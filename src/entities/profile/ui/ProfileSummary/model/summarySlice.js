@@ -74,6 +74,11 @@ const summarySlice = createSlice({
             state.views = views
             state.photo = photo
             state.quality = quality
+        },
+
+        removeParam: (state, action) => {
+            const { key, value } = action.payload;
+            state[key] = state[key].filter(item => item.id !== value);
         }
     },
 })
@@ -85,6 +90,6 @@ export const {
     setFilmsBooks, setGames,
     setLikes, setViews,
     setPhoto, setQuality,
-    setAll,
+    setAll, removeParam,
 } = summarySlice.actions
 export default summarySlice.reducer

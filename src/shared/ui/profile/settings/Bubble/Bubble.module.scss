@@ -1,6 +1,7 @@
 @import '../../../../styles/variables.scss';
 
 .wrapper {
+    position: relative;
     display: flex;
     background-color: var(--color-items);
     font-size: $font-size-sm;
@@ -19,6 +20,53 @@
     filter: brightness(var(--brightness-hover));
     animation: pulse 0.5s;
     animation-iteration-count: infinite;
+}
+
+.deleteIcon {
+    display: none;
+    transform: rotate(45deg);
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    color: var(--color-text);
+    border-radius: 16px;
+    background-color: (--color-surface);
+}
+
+.wrapper.edit:hover {
+    background-color: var(--color-background);
+}
+
+.wrapper.edit:hover .deleteIcon {
+    display: block;
+    animation: delete 0.5s;
+}
+
+.wrapper.edit:hover .title {
+    color: var(--color-disabled);
+    filter: blur(1px);
+}
+
+
+@keyframes delete {
+    0%, 100% {
+        transform: rotate(45deg);
+    }
+    15%{
+        transform: rotate(60deg);
+    }
+    30%{
+        transform: rotate(30deg);
+    }
+    45%{
+        transform: rotate(60deg);
+    }
+    60%{
+        transform: rotate(30deg);
+    }
+    75%{
+        transform: rotate(60deg);
+    }
 }
 
 @keyframes pulse {

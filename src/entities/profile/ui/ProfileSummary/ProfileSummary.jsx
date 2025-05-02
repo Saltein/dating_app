@@ -25,10 +25,10 @@ export const ProfileSummary = ({ isProfilePage = false, dataObj }) => {
         name: useSelector(getName),
         age: useSelector(getAge),
         description: useSelector(getDescription),
-        interest: useSelector(getInterest),
-        music: useSelector(getMusic),
+        interest: useSelector(getInterest).map(obj => obj.id),
+        music: useSelector(getMusic).map(obj => obj.id),
         films_books: useSelector(getFilmsBooks),
-        games: useSelector(getGames),
+        games: useSelector(getGames).map(obj => obj.id),
         photo: useSelector(getPhoto),
         quality: useSelector(getQuality),
     };
@@ -57,6 +57,7 @@ export const ProfileSummary = ({ isProfilePage = false, dataObj }) => {
         try {
             await profileApi.updateProfile(updatedData);
             setIsEditMode(false);
+            console.log('submit')
         } catch (error) {
             console.error('Ошибка при отправке обновлённых данных:', error);
         }
@@ -74,6 +75,9 @@ export const ProfileSummary = ({ isProfilePage = false, dataObj }) => {
         };
     }, []);
 
+    useEffect(() => {
+        console.log('updatedData', updatedData)
+    }, [updatedData])
 
     // Components ------------------------------------------------
     const Container = isMobile ? motion.div : 'div'
