@@ -1,30 +1,63 @@
-import { Bubble, DefaultDividerH } from '../../../../../../shared'
+import { useDispatch } from 'react-redux'
+import { Bubble, DefaultButton, DefaultDividerH } from '../../../../../../shared'
 import s from './ListModal.module.scss'
+import { setGames, setInterest, setMusic, setQuality } from '../../model/summarySlice'
+import { useState } from 'react'
 
-export const ListModal = ({ optionList, currentOptions }) => {
+export const ListModal = ({ optionList, currentOptions, onClose, paramKey, onDelete, title }) => {
+    // States (local) ---------------------------------------------------------------------
+    const [search, setSearch] = useState('')
 
+    // Consts -----------------------------------------------------------------------------
+    const dispatch = useDispatch()
     const currentIds = new Set(currentOptions.map(option => option.id))
-
     const optionsLeft = optionList.filter(option => !currentIds.has(option.id))
+    const filteredOptions = optionsLeft.filter(option =>
+        option.title.toLowerCase().includes(search.toLowerCase())
+    )
+
+    const setters = {
+        'interest': setInterest,
+        'games': setGames,
+        'quality': setQuality,
+        'music': setMusic,
+    }
+
+    // Handlers ---------------------------------------------------------------------------
+    const handleAdd = (e) => {
+        const newOptions = [...currentOptions, e]
+        dispatch(setters[paramKey](newOptions))
+    }
 
     return (
-        <div className={s.wrapper} onMouseDown={()=>{}}>
-            <div className={s.window}>
+        <div className={s.wrapper} onMouseDown={onClose}>
+            <div className={s.window} onMouseDown={(e) => e.stopPropagation()}>
+                <div className={s.heder}>
+                    {title}
+                </div>
                 <div className={s.current}>
+                    {currentOptions.length < 1 && <span className={s.placeholder}>Выбери из списка подходящие для тебя варианты</span>}
                     {currentOptions.map((option, index) => {
                         return (
-                            <Bubble title={option.title} key={index} isCurrent />
+                            <Bubble obj={option} title={option.title} key={index} isCurrent isEditing onClick={() => onDelete(option.id)} />
                         )
                     })}
                 </div>
                 <DefaultDividerH />
+                <input
+                    type="text"
+                    placeholder="Поиск..."
+                    className={s.searchInput}
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                />
+
                 <div className={s.list}>
-                    {optionsLeft.map((option, index) => {
-                        return (
-                            <Bubble title={option.title} key={index} />
-                        )
-                    })}
+                    {filteredOptions.map((option, index) => (
+                        <Bubble obj={option} title={option.title} key={index} isAddable onClick={handleAdd} />
+                    ))}
                 </div>
+                <DefaultButton title={'Применить'} onClick={onClose} />
             </div>
         </div>
     )

@@ -19,11 +19,14 @@ export const SummaryBlock = ({ title = 'no title', params, isBubble = true, isEd
     // Handlers --------------------------------------------------
     const handleRemove = (id) => {
         dispatch(removeParam({ key: paramKey, value: id }))
-        console.log('remove', id)
     }
 
     const handleOpenModal = () => {
         setIsModalOpen(true)
+    }
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false)
     }
 
     // Effects ---------------------------------------------------
@@ -31,10 +34,9 @@ export const SummaryBlock = ({ title = 'no title', params, isBubble = true, isEd
         const fetchOptions = async () => {
             try {
                 let response = await profileApi.getOptions(paramKey)
-                console.log('response getOptions', response)
-                setOptionList(response) // предполагается, что response — это массив
+                setOptionList(response)
             } catch (error) {
-                console.error('Ошибка получения списка опций:', error);
+                console.error('Ошибка получения списка опций:', error)
             }
         }
         fetchOptions()
@@ -65,7 +67,7 @@ export const SummaryBlock = ({ title = 'no title', params, isBubble = true, isEd
                     </div>
                 </div>
             }
-            {isModalOpen && <ListModal optionList={optionList} currentOptions={params} />}
+            {isModalOpen && <ListModal optionList={optionList} currentOptions={params} onClose={handleCloseModal} paramKey={paramKey} onDelete={handleRemove} title={title} />}
         </div>
     )
 }

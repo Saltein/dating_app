@@ -21,3 +21,44 @@
         transform: scale(1);
     }
 }
+
+
+@keyframes delete {
+
+    0%,
+    100% {
+        transform: rotate(45deg);
+    }
+
+    15% {
+        transform: rotate(60deg);
+    }
+
+    30% {
+        transform: rotate(30deg);
+    }
+
+    45% {
+        transform: rotate(60deg);
+    }
+
+    60% {
+        transform: rotate(30deg);
+    }
+
+    75% {
+        transform: rotate(60deg);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(0.95);
+    }
+
+    50% {
+        transform: scale(1);
+    }
+}

@@ -27,6 +27,7 @@
     gap: $spacing-md;
     box-shadow: $shadow-md;
     max-width: 768px;
+    width: 100%;
     animation: appear 0.5s;
 }
 
@@ -35,4 +36,20 @@
     display: flex;
     flex-wrap: wrap;
     gap: $spacing-xs;
+}
+
+.heder {
+    font-size: $font-size-lg;
+    font-weight: 500;
+}
+
+.placeholder {
+    color: var(--color-placeholder)
+}
+
+.searchInput {
+    all: unset;
+    background-color: var(--color-items);
+    padding: $spacing-sm;
+    border-radius: $border-radius-md;
 }

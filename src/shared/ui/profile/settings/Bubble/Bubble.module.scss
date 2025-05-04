@@ -1,4 +1,5 @@
 @import '../../../../styles/variables.scss';
+@import '../../../../styles/animations.scss';
 
 .wrapper {
     position: relative;
@@ -16,11 +17,16 @@
     box-shadow: $shadow-xs;
 }
 
-.wrapper.current {
+.wrapper.current.light {
     background-color: var(--color-accent);
 }
 
-.wrapper.button:hover {
+.wrapper.current.dark {
+    background-color: var(--color-primary);
+}
+
+.wrapper.button:hover,
+.wrapper.addable:hover {
     filter: brightness(var(--brightness-hover));
     animation: pulse 0.5s;
     animation-iteration-count: infinite;
@@ -49,38 +55,4 @@
 .wrapper.edit:hover .title {
     color: var(--color-disabled);
     filter: blur(1px);
-}
-
-
-@keyframes delete {
-    0%, 100% {
-        transform: rotate(45deg);
-    }
-    15%{
-        transform: rotate(60deg);
-    }
-    30%{
-        transform: rotate(30deg);
-    }
-    45%{
-        transform: rotate(60deg);
-    }
-    60%{
-        transform: rotate(30deg);
-    }
-    75%{
-        transform: rotate(60deg);
-    }
-}
-
-@keyframes pulse {
-
-    0%,
-    100% {
-        transform: scale(0.9);
-    }
-
-    50% {
-        transform: scale(1);
-    }
 }
