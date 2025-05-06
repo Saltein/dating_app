@@ -3,7 +3,7 @@ import s from './SummaryBlock.module.scss'
 import { ReactComponent as FilmIcon } from '../../../../../../shared/assets/icons/film.svg'
 import { ReactComponent as BookIcon } from '../../../../../../shared/assets/icons/book.svg'
 import { useDispatch } from 'react-redux'
-import { removeParam } from '../../model/summarySlice'
+import { removeParam, setFilmsBooks } from '../../model/summarySlice'
 import { ListModal } from '../ListModal/ListModal'
 import { useEffect, useState } from 'react'
 import { profileApi } from '../../../../../../shared/api/profileApi'
@@ -15,6 +15,7 @@ export const SummaryBlock = ({ title = 'no title', params, isBubble = true, isEd
     // States (local) --------------------------------------------
     const [optionList, setOptionList] = useState([])
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isFBEditing, setIsFBEditing] = useState(false)
 
     // Handlers --------------------------------------------------
     const handleRemove = (id) => {
@@ -27,6 +28,9 @@ export const SummaryBlock = ({ title = 'no title', params, isBubble = true, isEd
 
     const handleCloseModal = () => {
         setIsModalOpen(false)
+    }
+
+    const handleChange = (e) => {
     }
 
     // Effects ---------------------------------------------------
@@ -55,11 +59,15 @@ export const SummaryBlock = ({ title = 'no title', params, isBubble = true, isEd
                     })}
                     {isEditing && <Bubble title={'+'} isButton onClick={handleOpenModal} />}
                 </div>
+
                 :
                 <div className={s.filmsBooks}>
-                    <div className={s.param}>
+                    <div className={s.param} onClick={() => setIsFBEditing(true)}>
                         <FilmIcon className={s.icon} />
-                        <span className={s.text}>{params.films}</span>
+                        {isFBEditing
+                            ? <textarea className={`${s.text} ${s.edit}`} value={params.films || ''} />
+                            : <span className={s.text}>{params.films}</span>
+                        }
                     </div>
                     <div className={s.param}>
                         <BookIcon className={s.icon} />

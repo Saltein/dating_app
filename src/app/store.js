@@ -6,7 +6,7 @@ const preloadedState = {
     auth: {
         token: localStorage.getItem('token') || null,
     },
-};
+}
 
 export const store = configureStore({
     reducer: {
