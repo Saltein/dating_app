@@ -1,0 +1,1 @@
+export { LikeCard } from './LikeCard/LikeCard'

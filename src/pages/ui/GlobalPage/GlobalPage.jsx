@@ -5,6 +5,7 @@ import { AuthPage, DatingPage, PageForUnauthorized, ProfilePage, SettingsPage } 
 import { GoBackButton } from '../../../shared'
 import { useSelector } from 'react-redux'
 import { selectToken } from '../../../entities/user/model/selectors'
+import { LikesPage } from '../OtherPages/LikesPage/LikesPage'
 
 export const GlobalPage = () => {
     const location = useLocation();
@@ -28,7 +29,7 @@ export const GlobalPage = () => {
                         <Routes>
                             <Route path='/profile' element={<ProfilePage />} />
                             <Route path='/dating' element={<DatingPage />} />
-                            <Route path='/likes' element={<div>likes</div>} />
+                            <Route path='/likes' element={<LikesPage />} />
                             <Route path='/chats' element={<div>chats</div>} />
                             <Route path='/settings' element={<SettingsPage />} />
                         </Routes>

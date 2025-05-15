@@ -4,7 +4,7 @@ import { ReactComponent as SuperLikeIcon } from '../../../assets/icons/fire.svg'
 import { ReactComponent as DislikeIcon } from '../../../assets/icons/cancel.svg'
 
 // type = 'like' | 'dislike' | 'super'
-export const LikeButton = ({ type = 'like' }) => {
+export const LikeButton = ({ type = 'like', isBig = true }) => {
     let Icon
 
     if (type === 'like') {
@@ -20,7 +20,7 @@ export const LikeButton = ({ type = 'like' }) => {
     return (
         <button className={`${s.wrapper} ${type === 'like' ? s.like : ''} ${type === 'dislike' ? s.dislike : ''}`}>
             {
-                <Icon className={s.icon} />
+                <Icon className={`${s.icon} ${isBig ? s.big : s.small}`} />
             }
         </button>
     )

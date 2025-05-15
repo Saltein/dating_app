@@ -1,0 +1,41 @@
+@import '../../../../shared/styles/variables.scss';
+
+.wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+    height: fit-content;
+    width: 100%;
+    height: 100%;
+    border-radius: $border-radius-lg;
+    background-color: var(--color-surface);
+    padding: $spacing-md;
+    gap: $spacing-md;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: fit-content;
+}
+
+.title {
+    font-size: $font-size-xl;
+}
+
+.title.desc {
+    color: var(--color-placeholder);
+    font-size: $font-size-sm
+}
+
+.profiles {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+    overflow-x: auto;
+    border-radius: $border-radius-lg;
+}
