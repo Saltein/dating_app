@@ -12,6 +12,7 @@ export {
     StatBadge,
     Bubble,
     EditButton,
+    LikeButton,
 } from './ui'
 
 export {

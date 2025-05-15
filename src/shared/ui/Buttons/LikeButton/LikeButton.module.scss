@@ -1,0 +1,21 @@
+@import '../../../styles/variables.scss';
+
+.wrapper {
+    border: none;
+    border-radius: $border-radius-lg;
+    flex: 1;
+    background-color: var(--color-super-button);
+}
+
+.wrapper.like {
+    background-color: var(--color-like-button);
+}
+
+.wrapper.dislike {
+    background-color: var(--color-dislike-button);
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+}

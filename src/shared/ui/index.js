@@ -11,5 +11,5 @@ export { GoBackButton } from './Buttons/GoBackButton/GoBackButton'
 export { WarningMessage } from './Warnings/WarningMessage/WarningMessage'
 export { StatBadge } from './Badges/StatBadge/StatBadge'
 export { EditButton } from './Buttons/EditButton/EditButton'
-
+export { LikeButton } from './Buttons/LikeButton/LikeButton'
 export { Bubble } from './profile/settings/Bubble/Bubble'

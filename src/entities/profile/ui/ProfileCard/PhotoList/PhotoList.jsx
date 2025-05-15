@@ -18,16 +18,21 @@ export const PhotoList = ({ photos = [] }) => {
     return (
         <>
             <div className={s.wrapper} onClick={handleClick}>
-                <img className={s.photo} src={photos[currentIndex]} alt="Фото" />
-                <div className={s.photoCount}>
+                {photos.length > 0
+                    ?
+                    <img className={s.photo} src={photos[currentIndex]} alt="Фото" />
+                    :
+                    <img className={s.photo} src="https://dummyimage.com/1080x1920/7d98b3/ffffff&text=Фото+профиля" />
+                }
+                < div className={s.photoCount}>
                     {photos.map((_, index) => (
                         <span
                             key={index}
                             className={`${s.dot} ${index === currentIndex ? s.active : ''}`}
                         />
                     ))}
-                </div>
-            </div>
+                </div >
+            </div >
         </>
     );
 };

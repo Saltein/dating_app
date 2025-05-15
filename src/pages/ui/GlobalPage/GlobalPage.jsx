@@ -1,7 +1,7 @@
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { BottomNav, Header, Navigation } from '../../../widgets'
 import s from './GlobalPage.module.scss'
-import { AuthPage, PageForUnauthorized, ProfilePage, SettingsPage } from '../OtherPages'
+import { AuthPage, DatingPage, PageForUnauthorized, ProfilePage, SettingsPage } from '../OtherPages'
 import { GoBackButton } from '../../../shared'
 import { useSelector } from 'react-redux'
 import { selectToken } from '../../../entities/user/model/selectors'
@@ -27,7 +27,7 @@ export const GlobalPage = () => {
                     <div className={s.page}>
                         <Routes>
                             <Route path='/profile' element={<ProfilePage />} />
-                            <Route path='/dating' element={<div>dating</div>} />
+                            <Route path='/dating' element={<DatingPage />} />
                             <Route path='/likes' element={<div>likes</div>} />
                             <Route path='/chats' element={<div>chats</div>} />
                             <Route path='/settings' element={<SettingsPage />} />

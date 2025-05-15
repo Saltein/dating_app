@@ -1,4 +1,4 @@
-import { StatBadge } from '../../../../shared'
+import { LikeButton, StatBadge } from '../../../../shared'
 import s from './ProfileCard.module.scss'
 import { ReactComponent as LikeIcon } from '../../../../shared/assets/icons/heart.svg'
 import { PhotoList } from './PhotoList/PhotoList'
@@ -29,7 +29,9 @@ export const ProfileCard = ({ isProfilePage = false, data }) => {
                     </div>
                     :
                     <div className={s.params}>
-                        abiba
+                        <LikeButton type='dislike' />
+                        <LikeButton type='super' />
+                        <LikeButton type='like' />
                     </div>
             }
 
