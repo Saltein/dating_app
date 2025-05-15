@@ -5,8 +5,8 @@
     flex-direction: column;
     position: relative;
     background-color: var(--color-items);
-    width: 160px;
-    height: 240px;
+    width: 204px;
+    height: 320px;
     border: 1px solid var(--color-border);
     border-radius: $border-radius-xl;
     overflow: hidden;
@@ -29,12 +29,14 @@
     width: 100%;
     gap: $spacing-xxs;
     border-radius: $border-radius-lg;
+    background-color: var(--color-surface-transparent);
 }
 
 .name {
-    color: var(--color-text-reversed);
+    color: #f3f4f6;
     padding: 0 $spacing-xxs;
     font-weight: 600;
+    font-size: $font-size-lg;
     text-shadow: 0 1px 3px #000000aa;
     backdrop-filter: blur(4px);
     border-radius: $border-radius-md;
