@@ -1,0 +1,9 @@
+@import '../../../shared/styles/variables.scss';
+
+.wrapper {
+    background-color: var(--color-background);
+    border-radius: $border-radius-lg;
+    border: 1px solid var(--color-border);
+    box-shadow: $shadow-md;
+    overflow: hidden;
+}

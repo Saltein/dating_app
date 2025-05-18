@@ -1,0 +1,37 @@
+@import '../../../../shared/styles/variables.scss';
+
+.wrapper {
+    display: flex;
+    height: 64px;
+    width: 100%;
+    align-items: center;
+    padding: $spacing-sm;
+    gap: $spacing-sm;
+    background-color: var(--color-background);
+    transition: $transition-medium;
+}
+
+.wrapper:hover {
+    filter: brightness(var(--brightness-hover));
+    box-shadow: inset $shadow-sm;
+    transition: $transition-fast;
+}
+
+.wrapper.current.dark {
+    background-color: var(--color-primary);
+}
+
+.wrapper.current.light {
+    background-color: var(--color-accent);
+}
+
+.image {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.name_message {
+    display: flex;
+    flex-direction: column;
+}

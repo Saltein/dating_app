@@ -4,5 +4,9 @@ export {
 } from './profile/ui'
 
 export {
-    LikeCard
+    LikeCard,
 } from './likes/ui'
+
+export {
+    ChatItem,
+} from './chat/ui'
