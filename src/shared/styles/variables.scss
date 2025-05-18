@@ -3,7 +3,7 @@
 // ================================
 
 // Общие SCSS-переменные, если нужно в логике SCSS
-$primary-color: var(--color-primary); 
+$primary-color: var(--color-primary);
 $background-color: var(--color-background);
 $text-color: var(--color-text);
 
@@ -31,6 +31,7 @@ $text-color: var(--color-text);
     --color-text: #111827; // Основной цвет текста
     --color-text-reversed: #f3f4f6; // Основной цвет текста
     --color-muted: #6b7280; // Вторичный/приглушённый текст (например, описание, метки)
+    --color-muted-transparent: #11182788; // Вторичный/приглушённый текст (например, описание, метки)
     --color-placeholder: #9ca3af; // Цвет плейсхолдеров в инпутах
     --color-disabled: #d1d5db; // Цвет текста и элементов в отключённом состоянии
 
@@ -49,9 +50,9 @@ $text-color: var(--color-text);
     --color-views: rgba(0, 191, 255, 0.3);
     --color-neutral: rgba(255, 255, 255, 0.3);
 
-    --color-like-button : #00ff0d66;
-    --color-super-button : #cc3fff66;
-    --color-dislike-button : #ff000066;
+    --color-like-button: #00ff0d66;
+    --color-super-button: #cc3fff66;
+    --color-dislike-button: #ff000066;
 
     --brightness-hover: 0.8;
     --brightness-active: 0.6;
@@ -72,7 +73,8 @@ $text-color: var(--color-text);
 
     // Текст — стили текста в тёмной теме
     --color-text: #f3f4f6; // Основной цвет текста
-        --color-text-reversed: #111827; // Основной цвет текста
+    --color-text-reversed: #111827; // Основной цвет текста
+    --color-muted-transparent: #f3f4f688; // Приглушённый текст
     --color-muted: #9ca3af; // Приглушённый текст
     --color-placeholder: #6b7280; // Плейсхолдеры
     --color-disabled: #4b5563; // Отключённые элементы
@@ -90,7 +92,7 @@ $text-color: var(--color-text);
     // Другие — оформление вспомогательных элементов
     --scrollbar-thumb: #374151; // Цвет ползунка в тёмной теме
     --scrollbar-track: transparent; // Трек остаётся прозрачным
-    
+
     --brightness-hover: 1.4;
     --brightness-active: 1.8;
 }

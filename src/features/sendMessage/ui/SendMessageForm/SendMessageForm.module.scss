@@ -1,0 +1,39 @@
+@import '../../../../shared/styles/variables.scss';
+
+.wrapper {
+    display: flex;
+    height: 48px;
+    gap: $spacing-md;
+}
+
+.inputMessage {
+    width: 100%;
+    display: flex;
+}
+
+.input {
+    all: unset;
+    box-sizing: border-box;
+    background-color: var(--color-items);
+    width: 100%;
+    height: 100%;
+    border-radius: $border-radius-lg;
+    border: 1px solid var(--color-border);
+}
+
+
+
+// TEMP
+.send {
+    padding: $spacing-xs;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $border-radius-lg;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-items);
+    box-sizing: border-box;
+    flex-shrink: 0;
+}

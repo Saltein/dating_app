@@ -20,4 +20,8 @@
 
 .chat {
     flex: 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    gap: $spacing-md;
 }

@@ -3,17 +3,39 @@ import { Route, Routes, useLocation } from 'react-router-dom'
 import { BottomNav, Header, Navigation } from '../../../widgets'
 import { AuthPage, ChatsPage, DatingPage, PageForUnauthorized, ProfilePage, SettingsPage } from '../OtherPages'
 import { GoBackButton } from '../../../shared'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { selectToken } from '../../../entities/user/model/selectors'
 import { LikesPage } from '../OtherPages/LikesPage/LikesPage'
 import { buttonsList } from './lib/navButtonsList'
+import { profileApi } from '../../../shared/api/profileApi'
+import { setAll } from '../../../entities/profile/ui/ProfileSummary/model/summarySlice'
+import { useEffect } from 'react'
 
 export const GlobalPage = () => {
-    const location = useLocation();
+    const location = useLocation()
+    const dispatch = useDispatch()
     const hideLayoutRoutes = ['/auth']
     const isSimpleLayout = hideLayoutRoutes.includes(location.pathname)
 
     const token = useSelector(selectToken)
+
+    const getProfile = async () => {
+        try {
+            let response = await profileApi.getProfile();
+            if (response) {
+                console.log("Данные получены", response)
+                dispatch(setAll(response))
+            } else {
+                console.log("Неизвестная ошибка получения профиля")
+            }
+        } catch (error) {
+            console.log("Ошибка получения профиля", error)
+        }
+    }
+
+    useEffect(() => {
+        getProfile()
+    }, [])
 
     return (
         <div className={s.wrapper}>

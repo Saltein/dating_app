@@ -17,7 +17,7 @@ export const ChatsNav = ({ chatsList = [] }) => {
                     <div key={`${chat.chatId} - ${index}`}>
                         <ChatItem chatData={chat} currentChat={currentChat} onClick={handleSelectChat} />
                         {index < chatsList.length - 1 && (
-                            <DefaultDividerH margin={'8px'} />
+                            <DefaultDividerH margin={'8px'} color='var(--color-background)' />
                         )}
                     </div>
                 )

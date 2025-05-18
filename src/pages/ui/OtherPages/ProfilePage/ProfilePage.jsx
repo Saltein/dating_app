@@ -1,9 +1,6 @@
-import { useEffect } from 'react'
 import { ProfileCard, ProfileSummary } from '../../../../entities'
 import s from './ProfilePage.module.scss'
-import { profileApi } from '../../../../shared/api/profileApi'
 import { useDispatch, useSelector } from 'react-redux'
-import { setAll } from '../../../../entities/profile/ui/ProfileSummary/model/summarySlice'
 import {
     getAge, getDescription,
     getFilmsBooks, getGames,
@@ -34,24 +31,6 @@ export const ProfilePage = () => {
         quality: useSelector(getQuality),
         photo: useSelector(getPhoto),
     }
-
-    const getProfile = async () => {
-        try {
-            let response = await profileApi.getProfile();
-            if (response) {
-                console.log("Данные получены", response)
-                dispatch(setAll(response))
-            } else {
-                console.log("Неизвестная ошибка получения профиля")
-            }
-        } catch (error) {
-            console.log("Ошибка получения профиля", error)
-        }
-    }
-
-    useEffect(() => {
-        getProfile()
-    }, [])
 
     return (
         <div className={s.wrapper}>

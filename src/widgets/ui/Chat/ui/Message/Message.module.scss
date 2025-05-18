@@ -1,0 +1,50 @@
+@import '../../../../../shared/styles/variables.scss';
+
+.wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-items);
+    border: 1px solid var(--color-border);
+    border-radius: $border-radius-lg $border-radius-lg $border-radius-lg 0;
+    max-width: 90%;
+    align-self: flex-start;
+    padding: $spacing-xs $spacing-sm;
+}
+
+.wrapper.my {
+    border-radius: $border-radius-lg $border-radius-lg 0 $border-radius-lg;
+    align-self: flex-end;
+
+    &.dark {
+        background-color: var(--color-primary);
+    }
+
+    &.light {
+        background-color: var(--color-accent);
+    }
+}
+
+.message {
+    line-height: 20px;
+}
+
+.time {
+    position: relative;
+    font-size: $font-size-xs;
+    color: var(--color-muted-transparent);
+}
+
+.wrapper.single {
+    flex-direction: row;
+    gap: $spacing-xs;
+
+    .time {
+        bottom: -$spacing-xxs;
+    }
+}
+
+.wrapper.multi {
+    gap: $spacing-xs;
+    flex-direction: column;
+}

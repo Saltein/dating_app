@@ -18,3 +18,7 @@ export {
 export {
     ThemeProvider,
 } from './context'
+
+export {
+    formatDate,
+} from './lib/date/formatDate'

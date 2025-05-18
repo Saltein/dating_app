@@ -1,4 +1,5 @@
-import { DefaultDividerV } from '../../../../shared/ui'
+import { SendMessageForm } from '../../../../features'
+import { DefaultDividerH, DefaultDividerV } from '../../../../shared/ui'
 import { Chat, ChatsNav } from '../../../../widgets/ui'
 import s from './ChatsPage.module.scss'
 
@@ -41,6 +42,8 @@ export const ChatsPage = () => {
             <DefaultDividerV />
             <div className={s.chat}>
                 <Chat />
+                <DefaultDividerH />
+                <SendMessageForm />
             </div>
         </div>
     )
