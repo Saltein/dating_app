@@ -1,0 +1,64 @@
+@import '../../../../shared/styles/variables.scss';
+
+.wrapper {
+    width: 100%;
+    height: calc(100% - 48px);
+}
+
+.blur {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(20px) brightness(0.25);
+}
+
+.dialog {
+    height: 60%;
+    margin: 0 auto;
+    overflow-y: auto;
+    max-width: $breakpoint-md;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+    justify-content: flex-start;
+    padding: 40px $spacing-md;
+    margin-bottom: $spacing-sm;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+    cursor: pointer;
+
+    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+}
+
+.message {
+    display: flex;
+    align-items: end;
+    gap: $spacing-xs;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    background-color: var(--color-items);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+}
+
+.logo {
+    width: 24px;
+    height: 24px;
+}
+
+
+
+
+@media (max-width: $breakpoint-md) {
+    .dialog {
+        padding: 40px $spacing-md;
+    }
+}

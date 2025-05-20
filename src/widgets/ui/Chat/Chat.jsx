@@ -1,5 +1,5 @@
 import s from './Chat.module.scss'
-import { Message } from './ui/Message/Message'
+import { Message } from '../../../shared/ui'
 
 const messages = [
     {

@@ -1,0 +1,73 @@
+@import '../../../../../../shared/styles/variables.scss';
+@import '../../../../../../shared/styles/animations.scss';
+
+.wrapper {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-2xl;
+    max-width: $breakpoint-xl;
+    height: 40%;
+}
+
+.titles {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    max-width: 40%;
+}
+
+.accent {
+    color: var(--color-primary);
+    font-size: 48px;
+    cursor: pointer;
+}
+
+.accent:hover {
+    color: var(--color-primary-hover);
+    animation: blink 0.2s;
+}
+
+.title {
+    line-height: 85%;
+}
+
+.subtitle {
+    font-weight: 300;
+    font-size: $font-size-lg;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+    height: fit-content;
+    border-radius: $border-radius-lg;
+    background-color: var(--color-surface);
+    padding: $spacing-md;
+    gap: $spacing-xs;
+    overflow: hidden;
+    box-shadow: $shadow-md;
+}
+
+.label {
+    width: 100%;
+    text-align: center;
+}
+
+
+@media (max-width: $breakpoint-md) {
+    .wrapper {
+        flex-direction: column;
+    }
+
+    .titles {
+        max-width: 100%;
+        padding: 0 $spacing-sm;
+    }
+
+    .title, .subtitle {
+        text-align: center;
+    }
+}

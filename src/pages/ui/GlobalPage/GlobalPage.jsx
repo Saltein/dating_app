@@ -1,5 +1,5 @@
 import s from './GlobalPage.module.scss'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import { BottomNav, Header, Navigation } from '../../../widgets'
 import { AuthPage, ChatsPage, DatingPage, PageForUnauthorized, ProfilePage, SettingsPage } from '../OtherPages'
 import { GoBackButton } from '../../../shared'
@@ -13,6 +13,7 @@ import { useEffect } from 'react'
 
 export const GlobalPage = () => {
     const location = useLocation()
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const hideLayoutRoutes = ['/auth']
     const isSimpleLayout = hideLayoutRoutes.includes(location.pathname)
@@ -37,9 +38,15 @@ export const GlobalPage = () => {
         getProfile()
     }, [])
 
+    useEffect(() => {
+        if (!token) {
+            navigate('/welcome')
+        }
+    }, [token])
+
     return (
         <div className={s.wrapper}>
-            {!isSimpleLayout ? <Header token={token} /> : <GoBackButton title={'На главную'} href={'/dating'} />}
+            {!isSimpleLayout ? <Header token={token} /> : <GoBackButton title={'На главную'} href={'/welcome'} />}
 
             {token ?
                 <div className={s.pageSpace}>
@@ -60,14 +67,14 @@ export const GlobalPage = () => {
                 </div>
                 :
                 <>
-                    <PageForUnauthorized />
                     <Routes>
+                        <Route path='/welcome' element={<PageForUnauthorized />} />
                         <Route path='/auth' element={<AuthPage />} />
                     </Routes>
                 </>
             }
 
-            {!isSimpleLayout &&
+            {!isSimpleLayout && token &&
                 <div className={s.bottom_nav}>
                     <BottomNav />
                 </div>

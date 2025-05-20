@@ -62,3 +62,60 @@
         transform: scale(1);
     }
 }
+
+@keyframes bounce {
+
+    0%,
+    47%,
+    75%,
+    100% {
+        transform: translateY(0);
+    }
+
+    20% {
+        transform: translateY(-4%);
+    }
+
+    25% {
+        transform: translateY(-6%);
+    }
+
+    30% {
+        transform: translateY(-4%);
+    }
+
+
+    56% {
+        transform: translateY(-2%);
+    }
+
+    60% {
+        transform: translateY(-3%);
+    }
+
+    64% {
+        transform: translateY(-2%);
+    }
+
+
+    83% {
+        transform: translateY(0);
+    }
+
+    90% {
+        transform: translateY(-1%);
+    }
+
+    93% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes blink {
+    0%, 100% {
+        filter: brightness(1) blur(0);
+    }
+    50% {
+        filter: brightness(20) blur(2px);
+    }
+}

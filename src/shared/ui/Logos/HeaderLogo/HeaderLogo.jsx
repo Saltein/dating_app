@@ -6,7 +6,7 @@ export const HeaderLogo = ({ onClick }) => {
     return (
         <div className={s.wrapper} onClick={onClick}>
             <img src={logo} className={s.logo} alt='logo' />
-            <img src={logoLetters} className={s.logo} alt='logo' />
+            <img src={logoLetters} className={s.logo2} alt='logo' />
         </div>
     )
 }

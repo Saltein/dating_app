@@ -1,4 +1,4 @@
-@import '../../../../../shared/styles/variables.scss';
+@import '../../../shared/styles/variables.scss';
 
 .wrapper {
     position: relative;
@@ -10,6 +10,10 @@
     max-width: 90%;
     align-self: flex-start;
     padding: $spacing-xs $spacing-sm;
+
+    .time {
+        text-align: right;
+    }
 }
 
 .wrapper.my {

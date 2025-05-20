@@ -1,14 +1,14 @@
 import s from './Message.module.scss'
 import { useSelector } from 'react-redux'
-import { formatDate } from '../../../../../shared'
-import { getId } from '../../../../../entities/profile/ui/ProfileSummary/model/summarySelectors'
-import { useTheme } from '../../../../../shared/context/theme/ThemeContext'
+import { formatDate } from '../../.'
+import { getId } from '../../../entities/profile/ui/ProfileSummary/model/summarySelectors'
+import { useTheme } from '../../../shared/context/theme/ThemeContext'
 import { useLayoutEffect, useRef, useState } from 'react'
 
 export const Message = ({ messageData }) => {
     const userId = useSelector(getId)
     const theme = useTheme().theme
-    const isMyMessage = userId === messageData.user_id
+    const isMyMessage = (userId === messageData.user_id) || (messageData.user_id === -20)
 
     const [mode, setMode] = useState('single');
     const msgRef = useRef(null);

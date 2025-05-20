@@ -31,21 +31,3 @@
     max-width: 1200px;
     width: 100%;
 }
-
-.authButtons {
-    display: flex;
-    align-items: center;
-    gap: $spacing-sm;
-}
-
-.registerLink {
-    font-size: $font-size-sm;
-    cursor: pointer;
-    transition: $transition-medium;
-    padding: 16px 0;
-}
-
-.registerLink:hover {
-    transform: scale(1.02);
-    transition: $transition-fast;
-}

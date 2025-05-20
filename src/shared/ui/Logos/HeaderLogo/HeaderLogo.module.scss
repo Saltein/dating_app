@@ -6,6 +6,19 @@
     gap: $spacing-xs;
 }
 
-.logo {
+.logo, .logo2 {
     height: 32px;
+}
+
+.logo2 {
+    display: block;
+}
+
+
+
+
+@media (max-width: $breakpoint-md) {
+    .logo2 {
+        display: none;
+    }
 }
