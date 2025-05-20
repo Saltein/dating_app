@@ -34,4 +34,15 @@
 .name_message {
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+}
+
+.message {
+    max-width: 160px;
+    color: var(--color-muted);
+    font-weight: 200;
+    font-size: $font-size-sm;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
