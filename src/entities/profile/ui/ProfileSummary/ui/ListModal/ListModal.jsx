@@ -30,7 +30,6 @@ export const ListModal = ({ optionList, currentOptions, onClose, paramKey, onDel
     }
 
     return (
-        <div className={s.wrapper} onMouseDown={onClose}>
             <div className={s.window} onMouseDown={(e) => e.stopPropagation()}>
                 <div className={s.heder}>
                     {title}
@@ -59,6 +58,5 @@ export const ListModal = ({ optionList, currentOptions, onClose, paramKey, onDel
                 </div>
                 <DefaultButton title={'Применить'} onClick={onClose} />
             </div>
-        </div>
     )
 }

@@ -15,6 +15,7 @@ export {
     LikeButton,
     SignInButton,
     Message,
+    ModalWindow,
 } from './ui'
 
 export {

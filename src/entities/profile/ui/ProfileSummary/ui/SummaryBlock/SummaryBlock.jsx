@@ -1,4 +1,4 @@
-import { Bubble } from '../../../../../../shared'
+import { Bubble, ModalWindow } from '../../../../../../shared'
 import s from './SummaryBlock.module.scss'
 import { ReactComponent as FilmIcon } from '../../../../../../shared/assets/icons/film.svg'
 import { ReactComponent as BookIcon } from '../../../../../../shared/assets/icons/book.svg'
@@ -77,7 +77,11 @@ export const SummaryBlock = ({ title = 'no title', params, isBubble = true, isEd
                     </div>
                 </div>
             }
-            {isModalOpen && <ListModal optionList={optionList} currentOptions={params} onClose={handleCloseModal} paramKey={paramKey} onDelete={handleRemove} title={title} />}
+            {isModalOpen &&
+                <ModalWindow onClose={handleCloseModal}>
+                    <ListModal optionList={optionList} currentOptions={params} onClose={handleCloseModal} paramKey={paramKey} onDelete={handleRemove} title={title} />
+                </ModalWindow>
+            }
         </div>
     )
 }

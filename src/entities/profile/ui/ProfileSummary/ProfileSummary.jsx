@@ -3,7 +3,7 @@ import { motion, useAnimation } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { ReactComponent as UpIcon } from '../../../../shared/assets/icons/up.svg'
-import { EditButton } from '../../../../shared'
+import { EditButton, ModalWindow } from '../../../../shared'
 import { ProfileParametersWindow } from '../../../../features/profile/ui/ProfileParametersWindow/ProfileParametersWindow'
 import { SummaryContent } from './ui/SummaryContent/SummaryContent'
 import { profileApi } from '../../../../shared/api/profileApi'
@@ -88,7 +88,11 @@ export const ProfileSummary = ({ isProfilePage = false, dataObj }) => {
                 animate: controls
             })}
         >
-            {isEditMode && <ProfileParametersWindow setState={setIsEditMode} data={data} onClick={handleSubmit} />}
+            {isEditMode &&
+                <ModalWindow onClose={() => setIsEditMode(false)}>
+                    <ProfileParametersWindow data={data} onClick={handleSubmit} />
+                </ModalWindow>
+            }
             {isProfilePage && <EditButton onClick={handleEdit} />}
             <UpIcon className={`${s.upIcon} ${isOpen ? s.open : ''}`} />
             <div className={s.header}>
