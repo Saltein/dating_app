@@ -27,7 +27,7 @@ export const Header = ({ token }) => {
             <div className={s.container}>
                 <HeaderLogo onClick={handleLogoClick} />
                 {token
-                    ? <UserDropdownMenu name={'Никита'} />
+                    ? <UserDropdownMenu />
                     :
                     <div className={s.authButtons}>
                         <SignInButton />

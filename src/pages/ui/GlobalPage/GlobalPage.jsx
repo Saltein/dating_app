@@ -24,7 +24,6 @@ export const GlobalPage = () => {
         try {
             let response = await profileApi.getProfile();
             if (response) {
-                console.log("Данные получены", response)
                 dispatch(setAll(response))
             } else {
                 console.log("Неизвестная ошибка получения профиля")
@@ -35,8 +34,10 @@ export const GlobalPage = () => {
     }
 
     useEffect(() => {
-        getProfile()
-    }, [])
+        if (token) {
+            getProfile()
+        }
+    }, [token])
 
     useEffect(() => {
         if (!token) {

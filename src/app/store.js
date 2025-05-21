@@ -3,7 +3,7 @@ import userReducer from '../entities/user/model/slice'
 import summaryReducer from '../entities/profile/ui/ProfileSummary/model/summarySlice'
 
 const preloadedState = {
-    auth: {
+    user: {
         token: localStorage.getItem('token') || null,
     },
 }

@@ -57,7 +57,6 @@ export const ProfileSummary = ({ isProfilePage = false, dataObj }) => {
         try {
             await profileApi.updateProfile(updatedData);
             setIsEditMode(false);
-            console.log('submit')
         } catch (error) {
             console.error('Ошибка при отправке обновлённых данных:', error);
         }
@@ -74,10 +73,6 @@ export const ProfileSummary = ({ isProfilePage = false, dataObj }) => {
             window.removeEventListener('resize', checkScreenSize);
         };
     }, []);
-
-    useEffect(() => {
-        console.log('updatedData', updatedData)
-    }, [updatedData])
 
     // Components ------------------------------------------------
     const Container = isMobile ? motion.div : 'div'

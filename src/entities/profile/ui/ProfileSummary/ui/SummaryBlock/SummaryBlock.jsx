@@ -35,15 +35,17 @@ export const SummaryBlock = ({ title = 'no title', params, isBubble = true, isEd
 
     // Effects ---------------------------------------------------
     useEffect(() => {
-        const fetchOptions = async () => {
-            try {
-                let response = await profileApi.getOptions(paramKey)
-                setOptionList(response)
-            } catch (error) {
-                console.error('Ошибка получения списка опций:', error)
+        if (paramKey) {
+            const fetchOptions = async () => {
+                try {
+                    let response = await profileApi.getOptions(paramKey)
+                    setOptionList(response)
+                } catch (error) {
+                    console.error('Ошибка получения списка опций:', error)
+                }
             }
+            fetchOptions()
         }
-        fetchOptions()
     }, [paramKey])
 
     return (

@@ -64,10 +64,10 @@ export const PageForUnauthorized = () => {
                 backgroundColor: `${theme === 'light' ? '#ffffffaa' : ''}`
             }}>
                 <HeroBlock />
-                <div className={s.dialog} onClick={() => {navigate('/auth')}}>
+                <div className={s.dialog} onClick={() => { navigate('/auth') }}>
                     {messages.map((message, index) => {
                         return (
-                            <>
+                            <div className={s.messageDiv} key={index} style={{justifyContent: message.user_id == -20 ? 'end' : 'start'}}>
                                 {
                                     message.user_id == -10
                                         ?
@@ -86,7 +86,7 @@ export const PageForUnauthorized = () => {
                                             messageData={message}
                                         />
                                 }
-                            </>
+                            </div>
                         )
                     })}
                 </div>

@@ -1,4 +1,4 @@
-const BASE_URL = process.env.REACT_APP_BASE_URL;;
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export const profileApi = {
     async getProfile() {
@@ -55,11 +55,14 @@ export const profileApi = {
                     'Content-Type': 'application/json'
                 },
             })
-    
+
             if (!response.ok) {
-                throw new Error(`Failed fetch list "${option}`);
+                if (response.status === 404) {
+                    return [];
+                }
+                throw new Error(`Failed fetch list "${option}"`);
             }
-    
+
             const data = await response.json()
             return data
         } catch (error) {
