@@ -74,6 +74,10 @@ export const ProfileSummary = ({ isProfilePage = false, dataObj }) => {
         };
     }, []);
 
+    useEffect(() => {
+        console.log(updatedData)
+    }, [updatedData])
+
     // Components ------------------------------------------------
     const Container = isMobile ? motion.div : 'div'
 

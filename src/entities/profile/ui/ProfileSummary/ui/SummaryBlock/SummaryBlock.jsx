@@ -30,8 +30,13 @@ export const SummaryBlock = ({ title = 'no title', params, isBubble = true, isEd
         setIsModalOpen(false)
     }
 
-    const handleChange = (e) => {
-    }
+    const handleFBChange = (field) => (e) => {
+        const value = e.target.value;
+        dispatch(setFilmsBooks({
+            films: field === 'films' ? value : params.films,
+            books: field === 'books' ? value : params.books,
+        }));
+    };
 
     // Effects ---------------------------------------------------
     useEffect(() => {
@@ -61,20 +66,56 @@ export const SummaryBlock = ({ title = 'no title', params, isBubble = true, isEd
                     })}
                     {isEditing && <Bubble title={'+'} isButton onClick={handleOpenModal} />}
                 </div>
-
                 :
                 <div className={s.filmsBooks}>
-                    <div className={s.param} onClick={() => setIsFBEditing(true)}>
-                        <FilmIcon className={s.icon} />
-                        {isFBEditing
-                            ? <textarea className={`${s.text} ${s.edit}`} value={params.films || ''} />
-                            : <span className={s.text}>{params.films}</span>
-                        }
-                    </div>
-                    <div className={s.param}>
-                        <BookIcon className={s.icon} />
-                        <span className={s.text}>{params.books}</span>
-                    </div>
+                    {isEditing
+                        ? (
+                            <>
+                                <div className={s.param}>
+                                    <FilmIcon className={s.icon} />
+                                    <textarea
+                                        maxLength={64}
+                                        className={`${s.text} ${s.edit}`}
+                                        value={params.films || ''}
+                                        onChange={handleFBChange('films')}
+                                        onBlur={() => setIsFBEditing(false)}
+                                        onInput={(e) => {
+                                            e.target.style.height = '20px';
+                                            e.target.style.height = `${e.target.scrollHeight}px`;
+                                        }}
+                                    />
+                                </div>
+                                <div className={s.param}>
+                                    <BookIcon className={s.icon} />
+                                    <textarea
+                                        maxLength={64}
+                                        className={`${s.text} ${s.edit}`}
+                                        value={params.books || ''}
+                                        onChange={handleFBChange('books')}
+                                        onBlur={() => setIsFBEditing(false)}
+                                        onInput={(e) => {
+                                            e.target.style.height = '20px';
+                                            e.target.style.height = `${e.target.scrollHeight}px`;
+                                        }}
+                                    />
+                                </div>
+                            </>
+                        )
+                        : (
+                            <>
+                                <div
+                                    className={s.param}
+                                >
+                                    <FilmIcon className={s.icon} />
+                                    <span className={s.text}>{params.films}</span>
+                                </div>
+                                <div className={s.param}>
+                                    <BookIcon className={s.icon} />
+                                    <span className={s.text}>{params.books}</span>
+                                </div>
+                            </>
+                        )
+                    }
                 </div>
             }
             {isModalOpen &&

@@ -7,7 +7,7 @@ const initialState = {
     description: '',
     interest: [],
     music: [],
-    films_books: { films: [], books: [] },
+    films_books: { films: '', books: '' },
     games: [],
     likes: null,
     views: null,

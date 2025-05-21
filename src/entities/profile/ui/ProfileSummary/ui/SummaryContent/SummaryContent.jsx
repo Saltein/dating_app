@@ -47,6 +47,7 @@ export const SummaryContent = ({ data, isEditing = false }) => {
             {isEditing ? (
                 <>
                     <textarea
+                        maxLength={512}
                         className={s.description}
                         ref={descriptionRef}
                         value={data.description || ''}

@@ -1,21 +1,6 @@
 @import '../../../../shared/styles/variables.scss';
 @import '../../../../shared/styles/animations.scss';
 
-.wrapper {
-    display: flex;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    background-color: var(--color-surface-transparent);
-    height: 100%;
-    width: 100%;
-    z-index: 1500;
-
-    backdrop-filter: blur(10px);
-}
-
 .window {
     display: flex;
     background-color: var(--color-surface);
@@ -23,7 +8,7 @@
     padding: $spacing-md;
     border-radius: $border-radius-lg;
     margin: auto;
-    max-width: 1200px;
+    max-width: 768px;
     animation: appear 0.5s ease-in-out;
     height: fit-content;
     position: relative;
