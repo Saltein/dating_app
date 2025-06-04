@@ -1,0 +1,19 @@
+@import '../../../../../../../shared/styles/variables.scss';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+}
+
+.title {
+    font-size: $font-size-base;
+    font-weight: 600;
+}
+
+.params {
+    display: flex;
+    flex-wrap: wrap;
+    display: flex;
+    gap: $spacing-xs;
+}

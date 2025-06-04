@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 @keyframes appear {
     0% {
         opacity: 0;
@@ -112,10 +114,25 @@
 }
 
 @keyframes blink {
-    0%, 100% {
+
+    0%,
+    100% {
         filter: brightness(1) blur(0);
     }
+
     50% {
         filter: brightness(20) blur(2px);
+    }
+}
+
+@keyframes required {
+
+    0%,
+    100% {
+        background-color: var(--color-primary);
+    }
+
+    50% {
+        background-color: var(--color-items);
     }
 }

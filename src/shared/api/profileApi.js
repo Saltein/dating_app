@@ -16,7 +16,6 @@ export const profileApi = {
             }
 
             const data = await response.json()
-            console.log('data', data)
             return data
         } catch (error) {
             console.error('Error fetching profile:', error)

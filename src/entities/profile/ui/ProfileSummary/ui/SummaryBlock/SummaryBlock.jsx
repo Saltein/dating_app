@@ -30,12 +30,6 @@ export const SummaryBlock = ({ title = 'no title', params = [], isBubble = true,
         setIsModalOpen(false)
     }
 
-    const handleFBChange = (field) => (e) => {
-        const value = e.target.value;
-        dispatch(setFilms(field === 'films' ? value : params.films))
-        dispatch(setBooks(field === 'books' ? value : params.books))
-    }
-
     const handleFilmsChange = (e) => {
         dispatch(setFilms([e.target.value]));
     }

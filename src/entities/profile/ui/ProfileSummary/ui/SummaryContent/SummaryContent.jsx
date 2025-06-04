@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { SummaryBlock } from '../SummaryBlock/SummaryBlock'
 import { PhotoItem } from './PhotoItem/PhotoItem'
 import { setDescription } from '../../model/summarySlice'
+import { QualityBlock } from '../SummaryBlock/QualityBlock/QualityBlock'
 
 export const SummaryContent = ({ data, isEditing = false }) => {
     // Consts ----------------------------------------------------
@@ -74,7 +75,7 @@ export const SummaryContent = ({ data, isEditing = false }) => {
                     <PhotoItem />
                 </div>
             }
-            {hasContent(data.quality) && <SummaryBlock title="Личные качества" params={data.quality} paramKey={'quality'} />}
+            {hasContent(data.quality) && <QualityBlock title="Личные качества" params={data} />}
             {hasContent(data.interest) && <SummaryBlock title="Увлечения" params={data.interest} isEditing={isEditing} paramKey={'interests'} />}
             {hasContent(data.music) && <SummaryBlock title="Музыка" params={data.music} isEditing={isEditing} paramKey={'music'} />}
             {hasContent(data.films_books) && <SummaryBlock title="Фильмы и книги" params={data.films_books} isBubble={false} isEditing={isEditing} />}

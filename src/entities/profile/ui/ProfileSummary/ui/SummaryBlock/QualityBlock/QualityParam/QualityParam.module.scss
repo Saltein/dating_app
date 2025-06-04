@@ -1,0 +1,54 @@
+@import "../../../../../../../../shared/styles/variables.scss";
+@import "../../../../../../../../shared/styles/animations.scss";
+
+.wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-items);
+    border: 1px solid var(--color-border);
+    height: 32px;
+    padding: 0 $spacing-sm;
+    border-radius: $border-radius-xl;
+    font-size: 14px;
+    transition: $transition-medium;
+}
+
+.wrapper.required {
+    animation: required 1s infinite;
+}
+
+.wrapper:hover {
+    filter: brightness(var(--brightness-hover));
+    transition: $transition-fast;
+}
+
+.menu {
+    position: absolute;
+    top: 100%; // Под .wrapper
+    left: 0;
+    width: 100%;
+    margin-top: 4px;
+    background-color: var(--color-items);
+    border: 1px solid var(--color-border);
+    border-radius: $border-radius-xl;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    padding: 4px 0;
+}
+
+.option {
+    padding: 6px 12px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color $transition-fast;
+    z-index: 2000;
+
+    &:hover {
+        filter: brightness(var(--brightness-hover));
+    }
+}
