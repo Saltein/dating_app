@@ -6,7 +6,6 @@ import { PhotoItem } from './PhotoItem/PhotoItem'
 import { setDescription } from '../../model/summarySlice'
 
 export const SummaryContent = ({ data, isEditing = false }) => {
-    console.log('data in SummaryContent', data)
     // Consts ----------------------------------------------------
     const descriptionRef = useRef()
     const dispatch = useDispatch()
