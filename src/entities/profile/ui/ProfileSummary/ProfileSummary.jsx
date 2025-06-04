@@ -28,14 +28,12 @@ export const ProfileSummary = ({ isProfilePage = false, dataObj }) => {
         name: useSelector(getName),
         age: useSelector(getAge),
         description: useSelector(getDescription),
-        interest: useSelector(getInterests).map(obj => obj.id),
+        interests: useSelector(getInterests).map(obj => obj.id),
         music: useSelector(getMusic).map(obj => obj.id),
-        films_books: {
-            films: useSelector(getFilms),
-            books: useSelector(getBooks)
-        },
+        films: useSelector(getFilms),
+        books: useSelector(getBooks),
         games: useSelector(getGames).map(obj => obj.id),
-        photo: useSelector(getPhotos),
+        photos: useSelector(getPhotos),
         marital_status: useSelector(getMaritalStatus),
         smoking_attitude: useSelector(getSmokingAttitude),
         alcohol_attitude: useSelector(getAlcoholAttitude),
@@ -66,10 +64,11 @@ export const ProfileSummary = ({ isProfilePage = false, dataObj }) => {
 
     const handleSubmit = async () => {
         try {
-            await profileApi.updateProfile(updatedData);
-            setIsEditMode(false);
+            const response = await profileApi.updateProfile(updatedData)
+            console.log('update response', response, updatedData)
+            setIsEditMode(false)
         } catch (error) {
-            console.error('Ошибка при отправке обновлённых данных:', error);
+            console.error('Ошибка при отправке обновлённых данных:', error)
         }
     }
 
@@ -86,7 +85,7 @@ export const ProfileSummary = ({ isProfilePage = false, dataObj }) => {
     }, []);
 
     useEffect(() => {
-        console.log(updatedData)
+        console.log('updatedData', updatedData)
     }, [updatedData])
 
     // Components ------------------------------------------------

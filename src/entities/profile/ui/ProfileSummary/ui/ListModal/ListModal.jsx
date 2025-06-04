@@ -22,7 +22,7 @@ export const ListModal = ({ optionList, currentOptions, onClose, paramKey, onDel
     )
 
     const setters = {
-        'interest': setInterests,
+        'interests': setInterests,
         'games': setGames,
         'marital_status': setMaritalStatus,
         'smoking_attitude': setSmokingAttitude,

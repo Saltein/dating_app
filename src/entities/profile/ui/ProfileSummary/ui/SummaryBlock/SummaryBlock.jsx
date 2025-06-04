@@ -8,7 +8,7 @@ import { ListModal } from '../ListModal/ListModal'
 import { useEffect, useState } from 'react'
 import { profileApi } from '../../../../../../shared/api/profileApi'
 
-export const SummaryBlock = ({ title = 'no title', params, isBubble = true, isEditing, paramKey }) => {
+export const SummaryBlock = ({ title = 'no title', params = [], isBubble = true, isEditing, paramKey }) => {
     // Consts ----------------------------------------------------
     const dispatch = useDispatch()
 
@@ -34,7 +34,14 @@ export const SummaryBlock = ({ title = 'no title', params, isBubble = true, isEd
         const value = e.target.value;
         dispatch(setFilms(field === 'films' ? value : params.films))
         dispatch(setBooks(field === 'books' ? value : params.books))
-    };
+    }
+
+    const handleFilmsChange = (e) => {
+        dispatch(setFilms([e.target.value]));
+    }
+    const handleBooksChange = (e) => {
+        dispatch(setBooks([e.target.value]));
+    }
 
     // Effects ---------------------------------------------------
     useEffect(() => {
@@ -75,7 +82,7 @@ export const SummaryBlock = ({ title = 'no title', params, isBubble = true, isEd
                                         maxLength={64}
                                         className={`${s.text} ${s.edit}`}
                                         value={params.films || ''}
-                                        onChange={handleFBChange('films')}
+                                        onChange={handleFilmsChange}
                                         onBlur={() => setIsFBEditing(false)}
                                         onInput={(e) => {
                                             e.target.style.height = '20px';
@@ -89,7 +96,7 @@ export const SummaryBlock = ({ title = 'no title', params, isBubble = true, isEd
                                         maxLength={64}
                                         className={`${s.text} ${s.edit}`}
                                         value={params.books || ''}
-                                        onChange={handleFBChange('books')}
+                                        onChange={handleBooksChange}
                                         onBlur={() => setIsFBEditing(false)}
                                         onInput={(e) => {
                                             e.target.style.height = '20px';
