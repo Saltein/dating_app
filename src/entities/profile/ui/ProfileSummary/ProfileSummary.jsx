@@ -8,11 +8,14 @@ import { ProfileParametersWindow } from '../../../../features/profile/ui/Profile
 import { SummaryContent } from './ui/SummaryContent/SummaryContent'
 import { profileApi } from '../../../../shared/api/profileApi'
 import {
-    getAge, getDescription,
-    getFilmsBooks, getGames,
-    getInterest, getMusic,
-    getName, getPhoto,
-    getQuality
+    getAge, getAlcoholAttitude, getBooks, getChildrenAttitude, getDescription,
+    getFilms,
+    getGames,
+    getHeight, getInterests, getMaritalStatus, getMusic,
+    getName,
+    getPhotos,
+    getPhysicalActivity,
+    getSmokingAttitude
 } from '../../../../entities/profile/ui/ProfileSummary/model/summarySelectors'
 
 export const ProfileSummary = ({ isProfilePage = false, dataObj }) => {
@@ -25,12 +28,20 @@ export const ProfileSummary = ({ isProfilePage = false, dataObj }) => {
         name: useSelector(getName),
         age: useSelector(getAge),
         description: useSelector(getDescription),
-        interest: useSelector(getInterest).map(obj => obj.id),
+        interest: useSelector(getInterests).map(obj => obj.id),
         music: useSelector(getMusic).map(obj => obj.id),
-        films_books: useSelector(getFilmsBooks),
+        films_books: {
+            films: useSelector(getFilms),
+            books: useSelector(getBooks)
+        },
         games: useSelector(getGames).map(obj => obj.id),
-        photo: useSelector(getPhoto),
-        quality: useSelector(getQuality),
+        photo: useSelector(getPhotos),
+        marital_status: useSelector(getMaritalStatus),
+        smoking_attitude: useSelector(getSmokingAttitude),
+        alcohol_attitude: useSelector(getAlcoholAttitude),
+        physical_activity: useSelector(getPhysicalActivity),
+        children_attitude: useSelector(getChildrenAttitude),
+        height: useSelector(getHeight),
     };
 
     // States (local) --------------------------------------------

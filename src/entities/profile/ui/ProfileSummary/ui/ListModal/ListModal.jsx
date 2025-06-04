@@ -1,7 +1,12 @@
 import { useDispatch } from 'react-redux'
 import { Bubble, DefaultButton, DefaultDividerH } from '../../../../../../shared'
 import s from './ListModal.module.scss'
-import { setGames, setInterest, setMusic, setQuality } from '../../model/summarySlice'
+import { setAlcoholAttitude, 
+    setChildrenAttitude, 
+    setGames, setHeight, 
+    setInterests, 
+    setMaritalStatus, setMusic, 
+    setPhysicalActivity, setSmokingAttitude } from '../../model/summarySlice'
 import { useState } from 'react'
 
 export const ListModal = ({ optionList, currentOptions, onClose, paramKey, onDelete, title }) => {
@@ -17,9 +22,14 @@ export const ListModal = ({ optionList, currentOptions, onClose, paramKey, onDel
     )
 
     const setters = {
-        'interest': setInterest,
+        'interest': setInterests,
         'games': setGames,
-        'quality': setQuality,
+        'marital_status': setMaritalStatus,
+        'smoking_attitude': setSmokingAttitude,
+        'alcohol_attitude': setAlcoholAttitude,
+        'physical_activity': setPhysicalActivity,
+        'children_attitude': setChildrenAttitude,
+        'height': setHeight,
         'music': setMusic,
     }
 

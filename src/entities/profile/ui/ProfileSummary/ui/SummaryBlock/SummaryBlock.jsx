@@ -3,7 +3,7 @@ import s from './SummaryBlock.module.scss'
 import { ReactComponent as FilmIcon } from '../../../../../../shared/assets/icons/film.svg'
 import { ReactComponent as BookIcon } from '../../../../../../shared/assets/icons/book.svg'
 import { useDispatch } from 'react-redux'
-import { removeParam, setFilmsBooks } from '../../model/summarySlice'
+import { removeFromArray, setBooks, setFilms } from '../../model/summarySlice'
 import { ListModal } from '../ListModal/ListModal'
 import { useEffect, useState } from 'react'
 import { profileApi } from '../../../../../../shared/api/profileApi'
@@ -19,7 +19,7 @@ export const SummaryBlock = ({ title = 'no title', params, isBubble = true, isEd
 
     // Handlers --------------------------------------------------
     const handleRemove = (id) => {
-        dispatch(removeParam({ key: paramKey, value: id }))
+        dispatch(removeFromArray({ key: paramKey, value: id }))
     }
 
     const handleOpenModal = () => {
@@ -32,10 +32,8 @@ export const SummaryBlock = ({ title = 'no title', params, isBubble = true, isEd
 
     const handleFBChange = (field) => (e) => {
         const value = e.target.value;
-        dispatch(setFilmsBooks({
-            films: field === 'films' ? value : params.films,
-            books: field === 'books' ? value : params.books,
-        }));
+        dispatch(setFilms(field === 'films' ? value : params.films))
+        dispatch(setBooks(field === 'books' ? value : params.books))
     };
 
     // Effects ---------------------------------------------------
