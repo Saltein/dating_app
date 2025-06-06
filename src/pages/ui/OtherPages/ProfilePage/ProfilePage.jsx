@@ -1,6 +1,6 @@
-import { ProfileCard, ProfileSummary } from '../../../../entities'
 import s from './ProfilePage.module.scss'
-import { useDispatch, useSelector } from 'react-redux'
+import { ProfileCard, ProfileSummary } from '../../../../entities'
+import { useSelector } from 'react-redux'
 import {
     getAge, getAlcoholAttitude, getBooks, getChildrenAttitude, getDescription,
     getFilms,
@@ -16,8 +16,6 @@ import {
 } from '../../../../entities/profile/ui/ProfileSummary/model/summarySelectors'
 
 export const ProfilePage = () => {
-    const dispatch = useDispatch()
-
     const cardData = {
         photo: useSelector(getPhotos),
         likes: useSelector(getLikes),

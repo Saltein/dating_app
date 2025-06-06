@@ -38,7 +38,7 @@
     display: flex;
     flex-direction: column;
     font-size: 14px;
-    padding: 4px 0;
+    overflow: hidden;
 }
 
 .option {
@@ -47,8 +47,30 @@
     white-space: nowrap;
     transition: background-color $transition-fast;
     z-index: 2000;
+    background-color: var(--color-items);
+    border-radius: $border-radius-lg;
 
     &:hover {
         filter: brightness(var(--brightness-hover));
     }
+
+    &.default {
+        background: linear-gradient(var(--color-items), var(--color-likes));
+    }
+}
+
+.input {
+    all: unset;
+    height: 32px;
+    padding: 0 $spacing-xs;
+    width: 64px;
+    background-color: var(--color-items);
+}
+
+.warning {
+    position: absolute;
+    background-color: var(--color-items);
+    border-radius: $border-radius-lg;
+    padding: $spacing-xs;
+    border: 1px solid var(--color-border);
 }

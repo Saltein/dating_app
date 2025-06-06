@@ -34,12 +34,12 @@ export const ProfileSummary = ({ isProfilePage = false, dataObj }) => {
         books: useSelector(getBooks),
         games: useSelector(getGames).map(obj => obj.id),
         photos: useSelector(getPhotos),
-        marital_status: useSelector(getMaritalStatus),
-        smoking_attitude: useSelector(getSmokingAttitude),
-        alcohol_attitude: useSelector(getAlcoholAttitude),
-        physical_activity: useSelector(getPhysicalActivity),
-        children_attitude: useSelector(getChildrenAttitude),
-        height: useSelector(getHeight),
+        marital_status_id: useSelector(getMaritalStatus),
+        smoking_attitude_id: useSelector(getSmokingAttitude),
+        alcohol_attitude_id: useSelector(getAlcoholAttitude),
+        physical_activity_id: useSelector(getPhysicalActivity),
+        children_attitude_id: useSelector(getChildrenAttitude),
+        height_cm: useSelector(getHeight),
     };
 
     // States (local) --------------------------------------------
@@ -63,8 +63,12 @@ export const ProfileSummary = ({ isProfilePage = false, dataObj }) => {
     }
 
     const handleSubmit = async () => {
+        console.log('updatedData', updatedData)
         try {
             const response = await profileApi.updateProfile(updatedData)
+            if (!response) {
+                console.log('Неизвестная ошибка обновления данных')
+            }
             setIsEditMode(false)
         } catch (error) {
             console.error('Ошибка при отправке обновлённых данных:', error)

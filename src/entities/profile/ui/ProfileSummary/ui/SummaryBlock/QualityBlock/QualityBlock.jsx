@@ -38,12 +38,12 @@ export const QualityBlock = ({ title = '', params }) => {
             <span className={s.title}>{title}</span>
 
             <div className={s.params}>
-                <QualityParam defaultParam='Семейное положение' param={params.marital_status} options={options.marital_status} />
-                <QualityParam defaultParam='Какого ты роста?' param={params.height} />
-                <QualityParam defaultParam='Куришь?' param={params.smoking_attitude} options={options.smoking_attitude} />
-                <QualityParam defaultParam='Пьёшь?' param={params.alcohol_attitude} options={options.alcohol_attitude} />
-                <QualityParam defaultParam='Занимаешься спортом?' param={params.physical_activity} options={options.physical_activity} />
-                <QualityParam defaultParam='Есть дети?' param={params.children_attitude} options={options.children_attitude} />
+                <QualityParam defaultParam='Семейное положение' param={params.marital_status} options={options.marital_status} name='M' />
+                <QualityParam defaultParam='Какого ты роста?' param={params.height} name='H' />
+                <QualityParam defaultParam='Куришь?' param={params.smoking_attitude} options={options.smoking_attitude} name='S' />
+                <QualityParam defaultParam='Пьёшь?' param={params.alcohol_attitude} options={options.alcohol_attitude} name='A' />
+                <QualityParam defaultParam='Занимаешься спортом?' param={params.physical_activity} options={options.physical_activity} name='P' />
+                <QualityParam defaultParam='Есть дети?' param={params.children_attitude} options={options.children_attitude} name='C' />
             </div>
         </div>
     )
