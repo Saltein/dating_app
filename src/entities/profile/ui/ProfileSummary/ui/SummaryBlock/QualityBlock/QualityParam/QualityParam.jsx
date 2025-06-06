@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setAlcoholAttitude, setChildrenAttitude, setHeight, setMaritalStatus, setPhysicalActivity, setSmokingAttitude } from '../../../../model/summarySlice'
 import { getAlcoholAttitude, getChildrenAttitude, getHeight, getMaritalStatus, getPhysicalActivity, getSmokingAttitude } from '../../../../model/summarySelectors'
-import { DefaultButton, WarningMessage } from '../../../../../../../../shared'
+import { WarningMessage } from '../../../../../../../../shared'
 
-export const QualityParam = ({ defaultParam = '', options = [], name = '' }) => {
+export const QualityParam = ({ defaultParam = '', options = [], name = '', Icon, isEditing = false }) => {
     const [currentParam, setCurrentParam] = useState({ id: 0, value: defaultParam })
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0, width: 0 })
@@ -47,6 +47,7 @@ export const QualityParam = ({ defaultParam = '', options = [], name = '' }) => 
     const dispatch = useDispatch()
 
     const openMenu = () => {
+        if (!isEditing) return
         const rect = wrapperRef.current.getBoundingClientRect()
         setMenuPosition({
             top: rect.bottom + window.scrollY,
@@ -94,6 +95,7 @@ export const QualityParam = ({ defaultParam = '', options = [], name = '' }) => 
                 className={`${s.wrapper} ${currentParam.id === 0 ? s.required : ''}`}
                 onClick={openMenu}
             >
+                <Icon className={s.icon} />
                 {options.length > 0
                     ? options.find(opt => opt.id === currentParams[name])?.title || defaultParam
                     : (currentParams.H != null

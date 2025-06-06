@@ -2,8 +2,14 @@ import { useEffect, useState } from 'react'
 import s from './QualityBlock.module.scss'
 import { QualityParam } from './QualityParam/QualityParam'
 import { profileApi } from '../../../../../../../shared/api/profileApi'
+import { ReactComponent as HeartIcon } from '../../../../../../../shared/assets/icons/heart.svg'
+import { ReactComponent as HeightIcon } from '../../../../../../../shared/assets/icons/height.svg'
+import { ReactComponent as SmokingIcon } from '../../../../../../../shared/assets/icons/smoking.svg'
+import { ReactComponent as AlcoholIcon } from '../../../../../../../shared/assets/icons/alcohol.svg'
+import { ReactComponent as SportIcon } from '../../../../../../../shared/assets/icons/sport.svg'
+import { ReactComponent as ChildrenIcon } from '../../../../../../../shared/assets/icons/children.svg'
 
-export const QualityBlock = ({ title = '', params }) => {
+export const QualityBlock = ({ title = '', params, isEditing = false }) => {
     const [options, setOptions] = useState({ marital_status: [], smoking_attitude: [], alcohol_attitude: [], physical_activity: [], children_attitude: [] })
 
     const fetchOptions = async () => {
@@ -38,12 +44,24 @@ export const QualityBlock = ({ title = '', params }) => {
             <span className={s.title}>{title}</span>
 
             <div className={s.params}>
-                <QualityParam defaultParam='Семейное положение' param={params.marital_status} options={options.marital_status} name='M' />
-                <QualityParam defaultParam='Какого ты роста?' param={params.height} name='H' />
-                <QualityParam defaultParam='Куришь?' param={params.smoking_attitude} options={options.smoking_attitude} name='S' />
-                <QualityParam defaultParam='Пьёшь?' param={params.alcohol_attitude} options={options.alcohol_attitude} name='A' />
-                <QualityParam defaultParam='Занимаешься спортом?' param={params.physical_activity} options={options.physical_activity} name='P' />
-                <QualityParam defaultParam='Есть дети?' param={params.children_attitude} options={options.children_attitude} name='C' />
+                {(params.marital_status || isEditing) &&
+                    <QualityParam defaultParam='Семейное положение' param={params.marital_status} Icon={HeartIcon}
+                        options={options.marital_status} name='M' isEditing={isEditing} />}
+                {(params.height || isEditing) &&
+                    <QualityParam defaultParam='Какого ты роста?' param={params.height} Icon={HeightIcon}
+                        name='H' isEditing={isEditing} />}
+                {(params.smoking_attitude || isEditing) &&
+                    <QualityParam defaultParam='Куришь?' param={params.smoking_attitude} Icon={SmokingIcon}
+                        options={options.smoking_attitude} name='S' isEditing={isEditing} />}
+                {(params.alcohol_attitude || isEditing) &&
+                    <QualityParam defaultParam='Пьёшь?' param={params.alcohol_attitude} Icon={AlcoholIcon}
+                        options={options.alcohol_attitude} name='A' isEditing={isEditing} />}
+                {(params.physical_activity || isEditing) &&
+                    <QualityParam defaultParam='Занимаешься спортом?' param={params.physical_activity} Icon={SportIcon}
+                        options={options.physical_activity} name='P' isEditing={isEditing} />}
+                {(params.children_attitude || isEditing) &&
+                    <QualityParam defaultParam='Есть дети?' param={params.children_attitude} Icon={ChildrenIcon}
+                        options={options.children_attitude} name='C' isEditing={isEditing} />}
             </div>
         </div>
     )
