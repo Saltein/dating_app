@@ -47,10 +47,6 @@ export const QualityParam = ({ defaultParam = '', options = [], name = '', Icon,
         }
     }, [currentParams[name]])
 
-    useEffect(() => {
-        console.log('currentParam', currentParam)
-    }, [currentParam])
-
     const wrapperRef = useRef(null)
     const dispatch = useDispatch()
 

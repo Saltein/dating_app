@@ -1,5 +1,5 @@
-import { ProfileCard, ProfileSummary } from '../../../../entities'
 import s from './DatingPage.module.scss'
+import { ProfileCard, ProfileSummary } from '../../../../entities'
 import { useDispatch, useSelector } from 'react-redux'
 import { getId } from '../../../../entities/profile/ui/ProfileSummary/model/summarySelectors'
 import { datingApi } from '../../../../shared/api/datingApi'

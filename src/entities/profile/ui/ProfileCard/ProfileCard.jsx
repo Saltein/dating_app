@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getId } from '../ProfileSummary/model/summarySelectors'
 import { incrementProfilesQueuePos } from '../../../../features/dating/model/profilesSlice'
 
-export const ProfileCard = ({ isProfilePage = false, data }) => {
+export const ProfileCard = ({ isProfilePage = false, data, onAction }) => {
     const dispatch = useDispatch()
 
     const userId = useSelector(getId)
@@ -29,6 +29,7 @@ export const ProfileCard = ({ isProfilePage = false, data }) => {
                 console.log('Неизвестная ошибка лайка анкеты')
                 return
             }
+            if (onAction) onAction()
             dispatch(incrementProfilesQueuePos())
         } catch (error) {
             console.error('Ошибка лайка анкеты:', error)
@@ -55,9 +56,24 @@ export const ProfileCard = ({ isProfilePage = false, data }) => {
                 console.log('Неизвестная ошибка пропуска анкеты')
                 return
             }
+            if (onAction) onAction()
             dispatch(incrementProfilesQueuePos())
         } catch (error) {
             console.error('Ошибка пропуска анкеты:', error)
+        }
+    }
+
+    const handleReject = async () => {
+        try {
+            const response = await datingApi.rejectProfile(userId, data.id)
+            if (!response) {
+                console.log('Неизвестная ошибка скрытия анкеты')
+                return
+            }
+            onAction()
+            console.log(response)
+        } catch (error) {
+            console.error('Ошибка скрытия анкеты:', error)
         }
     }
 
@@ -75,8 +91,8 @@ export const ProfileCard = ({ isProfilePage = false, data }) => {
                     </div>
                     :
                     <div className={s.params}>
-                        <LikeButton type='dislike' onClick={handleDislike} />
-                        <LikeButton type='super' onClick={handleSuperLike} />
+                        <LikeButton type='dislike' onClick={onAction ? handleReject : handleDislike} />
+                        {!onAction && <LikeButton type='super' onClick={handleSuperLike} />}
                         <LikeButton type='like' onClick={handleLike} />
                     </div>
             }

@@ -75,7 +75,6 @@ export const SummaryContent = ({ data, isEditing = false, isDating = false }) =>
                     <PhotoItem />
                 </div>
             }
-            {console.log('data', data)}
             {(hasContent(data.alcohol_attitude) ||
                 hasContent(data.children_attitude) ||
                 hasContent(data.height) ||
