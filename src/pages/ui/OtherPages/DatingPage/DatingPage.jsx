@@ -1,54 +1,76 @@
 import { ProfileCard, ProfileSummary } from '../../../../entities'
 import s from './DatingPage.module.scss'
-import { useSelector } from 'react-redux'
-import {
-    getAge, getAlcoholAttitude, getBooks, getChildrenAttitude, getDescription,
-    getFilms,
-    getGames,
-    getHeight,
-    getId,
-    getInterests,
-    getLikes, getMaritalStatus, getMusic,
-    getName,
-    getPhotos,
-    getPhysicalActivity,
-    getSmokingAttitude, getViews
-} from '../../../../entities/profile/ui/ProfileSummary/model/summarySelectors'
+import { useDispatch, useSelector } from 'react-redux'
+import { getId } from '../../../../entities/profile/ui/ProfileSummary/model/summarySelectors'
+import { datingApi } from '../../../../shared/api/datingApi'
+import { useEffect, useState } from 'react'
+import { getProfilesQueuePos, resetProfilesQueuePos } from '../../../../features/dating/model/profilesSlice'
+import { DefaultButton } from '../../../../shared'
 
 export const DatingPage = () => {
-    // ВРЕМЕННОЕ РЕШЕНИЕ
-    const cardData = {
-        photo: useSelector(getPhotos),
-        likes: useSelector(getLikes),
-        views: useSelector(getViews),
+    const userId = useSelector(getId)
+    const queuePos = useSelector(getProfilesQueuePos)
+
+    const dispatch = useDispatch()
+
+    const [profiles, setProfiles] = useState([])
+
+    const fetchProfiles = async () => {
+        try {
+            const response = await datingApi.getTenProfiles(userId)
+            if (!response) {
+                console.log('Неизвестная ошибка получения профилей')
+                return
+            }
+            setProfiles(response)
+        } catch (error) {
+            console.error('Ошибка получения профилей: ', error)
+        }
     }
 
-    const summaryData = {
-        id: useSelector(getId),
-        name: useSelector(getName),
-        age: useSelector(getAge),
-        description: useSelector(getDescription),
-        interest: useSelector(getInterests),
-        music: useSelector(getMusic),
-        films_books: {
-            films: useSelector(getFilms),
-            books: useSelector(getBooks)
-        },
-        games: useSelector(getGames),
-        marital_status: useSelector(getMaritalStatus),
-        smoking_attitude: useSelector(getSmokingAttitude),
-        alcohol_attitude: useSelector(getAlcoholAttitude),
-        physical_activity: useSelector(getPhysicalActivity),
-        children_attitude: useSelector(getChildrenAttitude),
-        height: useSelector(getHeight),
-        photo: useSelector(getPhotos),
+    useEffect(() => {
+        if (userId) {
+            fetchProfiles()
+        }
+    }, [userId])
+
+    const handleDeleteViews = async () => {
+        try {
+            const response = await datingApi.clearViews(userId)
+            if (!response) {
+                console.log('Неизвестная ошибка удаления просмотров')
+                return
+            }
+            dispatch(resetProfilesQueuePos())
+            fetchProfiles()
+        } catch (error) {
+            console.error('Ошибка удаления просмотров: ', error)
+        }
     }
+
+    const currentProfile = profiles?.[queuePos]
+
+    if (profiles.length < 1) {
+        return (
+            <div className={s.wrapper}>
+                <div className={s.noProfiles}>
+                    <h3>Кажется, анкеты кончились</h3>
+                    <DefaultButton title={'Посмотреть анкеты заново'} onClick={handleDeleteViews} />
+                </div>
+            </div>
+        )
+    } else if (!currentProfile) {
+        fetchProfiles()
+        dispatch(resetProfilesQueuePos())
+        return <div className={s.wrapper}>Загрузка профиля...</div>
+    }
+
 
     return (
         <div className={s.wrapper}>
-            <ProfileCard data={cardData} />
+            <ProfileCard data={{ photo: currentProfile.photo, id: currentProfile.id }} />
             <div className={s.profileSummary}>
-                <ProfileSummary dataObj={summaryData} />
+                <ProfileSummary dataObj={currentProfile} isDating />
             </div>
         </div>
     )

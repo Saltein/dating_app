@@ -9,7 +9,7 @@ import { ReactComponent as AlcoholIcon } from '../../../../../../../shared/asset
 import { ReactComponent as SportIcon } from '../../../../../../../shared/assets/icons/sport.svg'
 import { ReactComponent as ChildrenIcon } from '../../../../../../../shared/assets/icons/children.svg'
 
-export const QualityBlock = ({ title = '', params, isEditing = false }) => {
+export const QualityBlock = ({ title = '', params, isEditing = false, isDating = false }) => {
     const [options, setOptions] = useState({ marital_status: [], smoking_attitude: [], alcohol_attitude: [], physical_activity: [], children_attitude: [] })
 
     const fetchOptions = async () => {
@@ -42,26 +42,25 @@ export const QualityBlock = ({ title = '', params, isEditing = false }) => {
     return (
         <div className={s.wrapper}>
             <span className={s.title}>{title}</span>
-
             <div className={s.params}>
                 {(params.marital_status || isEditing) &&
                     <QualityParam defaultParam='Семейное положение' param={params.marital_status} Icon={HeartIcon}
-                        options={options.marital_status} name='M' isEditing={isEditing} />}
+                        options={options.marital_status} name='M' isEditing={isEditing} isDating={isDating} />}
                 {(params.height || isEditing) &&
                     <QualityParam defaultParam='Какого ты роста?' param={params.height} Icon={HeightIcon}
-                        name='H' isEditing={isEditing} />}
+                        name='H' isEditing={isEditing} isDating={isDating} />}
                 {(params.smoking_attitude || isEditing) &&
                     <QualityParam defaultParam='Куришь?' param={params.smoking_attitude} Icon={SmokingIcon}
-                        options={options.smoking_attitude} name='S' isEditing={isEditing} />}
+                        options={options.smoking_attitude} name='S' isEditing={isEditing} isDating={isDating} />}
                 {(params.alcohol_attitude || isEditing) &&
                     <QualityParam defaultParam='Пьёшь?' param={params.alcohol_attitude} Icon={AlcoholIcon}
-                        options={options.alcohol_attitude} name='A' isEditing={isEditing} />}
+                        options={options.alcohol_attitude} name='A' isEditing={isEditing} isDating={isDating} />}
                 {(params.physical_activity || isEditing) &&
                     <QualityParam defaultParam='Занимаешься спортом?' param={params.physical_activity} Icon={SportIcon}
-                        options={options.physical_activity} name='P' isEditing={isEditing} />}
+                        options={options.physical_activity} name='P' isEditing={isEditing} isDating={isDating} />}
                 {(params.children_attitude || isEditing) &&
                     <QualityParam defaultParam='Есть дети?' param={params.children_attitude} Icon={ChildrenIcon}
-                        options={options.children_attitude} name='C' isEditing={isEditing} />}
+                        options={options.children_attitude} name='C' isEditing={isEditing} isDating={isDating} />}
             </div>
         </div>
     )

@@ -15,6 +15,13 @@
     overflow: hidden;
 }
 
+.noProfiles {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    margin: auto;
+}
+
 .profileSummary {
     flex: 1;
     height: 100%;

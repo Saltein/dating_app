@@ -6,7 +6,7 @@ import { setAlcoholAttitude, setChildrenAttitude, setHeight, setMaritalStatus, s
 import { getAlcoholAttitude, getChildrenAttitude, getHeight, getMaritalStatus, getPhysicalActivity, getSmokingAttitude } from '../../../../model/summarySelectors'
 import { WarningMessage } from '../../../../../../../../shared'
 
-export const QualityParam = ({ defaultParam = '', options = [], name = '', Icon, isEditing = false }) => {
+export const QualityParam = ({ defaultParam = '', options = [], name = '', Icon, isEditing = false, param, isDating = false }) => {
     const [currentParam, setCurrentParam] = useState({ id: 0, value: defaultParam })
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0, width: 0 })
@@ -40,8 +40,16 @@ export const QualityParam = ({ defaultParam = '', options = [], name = '', Icon,
     }
 
     useEffect(() => {
-        setCurrentParam(getValueFromStore())
+        if (isDating) {
+            setCurrentParam({ id: param })
+        } else {
+            setCurrentParam(getValueFromStore())
+        }
     }, [currentParams[name]])
+
+    useEffect(() => {
+        console.log('currentParam', currentParam)
+    }, [currentParam])
 
     const wrapperRef = useRef(null)
     const dispatch = useDispatch()
@@ -78,6 +86,21 @@ export const QualityParam = ({ defaultParam = '', options = [], name = '', Icon,
         closeMenu()
     }
 
+    const getDisplayValue = () => {
+        if (isDating) {
+            if (options.length > 0) {
+                return options.find(opt => opt.id === param)?.title || defaultParam;
+            } else {
+                return param != null ? `${param} см` : defaultParam;
+            }
+        }
+        if (options.length > 0) {
+            return options.find(opt => opt.id === currentParams[name])?.title || defaultParam;
+        } else {
+            return currentParams.H != null ? `${currentParams.H} см` : defaultParam;
+        }
+    }
+
     useEffect(() => {
         const handleClickOutside = (e) => {
             if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
@@ -96,11 +119,7 @@ export const QualityParam = ({ defaultParam = '', options = [], name = '', Icon,
                 onClick={openMenu}
             >
                 <Icon className={s.icon} />
-                {options.length > 0
-                    ? options.find(opt => opt.id === currentParams[name])?.title || defaultParam
-                    : (currentParams.H != null
-                        ? `${currentParams.H} см`
-                        : defaultParam)}
+                {getDisplayValue()}
             </div>
 
             {isMenuOpen &&

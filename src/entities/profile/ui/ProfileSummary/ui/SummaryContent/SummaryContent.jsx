@@ -6,7 +6,7 @@ import { PhotoItem } from './PhotoItem/PhotoItem'
 import { setDescription } from '../../model/summarySlice'
 import { QualityBlock } from '../SummaryBlock/QualityBlock/QualityBlock'
 
-export const SummaryContent = ({ data, isEditing = false }) => {
+export const SummaryContent = ({ data, isEditing = false, isDating = false }) => {
     // Consts ----------------------------------------------------
     const descriptionRef = useRef()
     const dispatch = useDispatch()
@@ -80,7 +80,7 @@ export const SummaryContent = ({ data, isEditing = false }) => {
                 hasContent(data.children_attitude) ||
                 hasContent(data.height) ||
                 hasContent(data.marital_status) ||
-                hasContent(data.physical_activity) || hasContent(data.smoking_attitude)) && <QualityBlock title="Личные качества" params={data} isEditing={isEditing} />}
+                hasContent(data.physical_activity) || hasContent(data.smoking_attitude)) && <QualityBlock title="Личные качества" params={data} isEditing={isEditing} isDating={isDating} />}
             {hasContent(data.interest) && <SummaryBlock title="Увлечения" params={data.interest} isEditing={isEditing} paramKey={'interests'} />}
             {hasContent(data.music) && <SummaryBlock title="Музыка" params={data.music} isEditing={isEditing} paramKey={'music'} />}
             {hasContent(data.films_books) && <SummaryBlock title="Фильмы и книги" params={data.films_books} isBubble={false} isEditing={isEditing} />}

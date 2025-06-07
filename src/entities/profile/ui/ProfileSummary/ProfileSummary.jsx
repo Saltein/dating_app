@@ -18,11 +18,11 @@ import {
     getSmokingAttitude
 } from '../../../../entities/profile/ui/ProfileSummary/model/summarySelectors'
 
-export const ProfileSummary = ({ isProfilePage = false, dataObj }) => {
+export const ProfileSummary = ({ isProfilePage = false, dataObj, isDating = false }) => {
 
     // Consts ----------------------------------------------------
-    const data = dataObj || {};
-    const controls = useAnimation();
+    const data = dataObj || {}
+    const controls = useAnimation()
 
     const updatedData = {
         name: useSelector(getName),
@@ -63,7 +63,6 @@ export const ProfileSummary = ({ isProfilePage = false, dataObj }) => {
     }
 
     const handleSubmit = async () => {
-        console.log('updatedData', updatedData)
         try {
             const response = await profileApi.updateProfile(updatedData)
             if (!response) {
@@ -115,7 +114,7 @@ export const ProfileSummary = ({ isProfilePage = false, dataObj }) => {
             </div>
 
             <div className={`${s.scrollableContent} ${isOpen ? s.open : ''} ${!isMobile ? s.visible : ''}`}>
-                <SummaryContent data={data} />
+                <SummaryContent data={data} isDating={isDating} />
             </div>
         </Container>
     )
