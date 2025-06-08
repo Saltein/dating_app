@@ -1,7 +1,11 @@
+import { useEffect, useState } from 'react'
 import { SendMessageForm } from '../../../../features'
 import { DefaultDividerH, DefaultDividerV } from '../../../../shared/ui'
 import { Chat, ChatsNav } from '../../../../widgets/ui'
 import s from './ChatsPage.module.scss'
+import { chatsApi } from '../../../../shared/api/chatsApi'
+import { useSelector } from 'react-redux'
+import { getId } from '../../../../entities/profile/ui/ProfileSummary/model/summarySelectors'
 
 const chatsList = [
     {
@@ -34,10 +38,32 @@ const chatsList = [
 ]
 
 export const ChatsPage = () => {
+    const [matches, setMatches] = useState([])
+
+    const userId = useSelector(getId)
+
+    const fetchMatches = async () => {
+        try {
+            const response = await chatsApi.getMatches(userId)
+            if (!response) {
+                console.log('Неизвестная ошибка получения списка мэтчей')
+                return
+            }
+            setMatches(response)
+        } catch (error) {
+            console.error('Ошибка получения списка мэтчей:', error)
+        }
+    }
+
+    useEffect(() => {
+        if (!userId) return // Ждём, пока userId появится
+        fetchMatches()
+    }, [userId])
+
     return (
         <div className={s.wrapper}>
             <div className={s.matches}>
-                <ChatsNav chatsList={chatsList} />
+                <ChatsNav chatsList={matches} />
             </div>
             <DefaultDividerV />
             <div className={s.chat}>

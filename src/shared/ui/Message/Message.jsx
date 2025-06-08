@@ -8,7 +8,7 @@ import { useLayoutEffect, useRef, useState } from 'react'
 export const Message = ({ messageData }) => {
     const userId = useSelector(getId)
     const theme = useTheme().theme
-    const isMyMessage = (userId === messageData.user_id) || (messageData.user_id === -20)
+    const isMyMessage = (userId === messageData.sender_id) || (messageData.sender_id === -20)
 
     const [mode, setMode] = useState('single');
     const msgRef = useRef(null);
@@ -25,7 +25,7 @@ export const Message = ({ messageData }) => {
                 setMode('single');
             }
         }
-    }, [messageData.text]);
+    }, [messageData.content]);
 
     return (
         <div className={[
@@ -34,8 +34,8 @@ export const Message = ({ messageData }) => {
             theme === 'dark' ? s.dark : s.light,
             s[mode]
         ].join(' ')}>
-            <span ref={msgRef} className={s.message}>{messageData.text}</span>
-            <span className={s.time}>{formatDate(messageData.created_at, false, true)}</span>
+            <span ref={msgRef} className={s.message}>{messageData.content}</span>
+            <span className={s.time}>{formatDate(messageData.sent_at, false, true)}</span>
         </div>
     )
 }

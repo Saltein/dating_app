@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import userReducer from '../entities/user/model/slice'
 import summaryReducer from '../entities/profile/ui/ProfileSummary/model/summarySlice'
 import profilesReducer from '../features/dating/model/profilesSlice'
+import chatReducer from '../entities/chat/model/chatSlice'
 
 const preloadedState = {
     user: {
@@ -14,6 +15,7 @@ export const store = configureStore({
         user: userReducer,
         summary: summaryReducer,
         profiles: profilesReducer,
+        chat: chatReducer,
     },
     preloadedState,
 });
