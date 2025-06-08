@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { isTokenExpired } from '../shared/lib/checkTokenExpiration'
 import { logoutUser } from '../features/auth/model/authActions'
+import { WebSocketProvider } from '../shared/lib/websocket/WebSocketContext'
 
 function App() {
   const dispatch = useDispatch()
@@ -17,7 +18,9 @@ function App() {
 
   return (
     <div className={s.wrapper}>
-      <GlobalPage />
+      <WebSocketProvider>
+        <GlobalPage />
+      </WebSocketProvider>
     </div>
   );
 }

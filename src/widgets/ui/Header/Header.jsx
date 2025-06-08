@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import s from './Header.module.scss'
-import { DefaultButton, HeaderLogo, SignInButton } from '../../../shared';
+import { HeaderLogo, SignInButton } from '../../../shared';
 import { UserDropdownMenu } from '../../../features';
 import { useNavigate } from 'react-router-dom';
 

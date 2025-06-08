@@ -11,7 +11,7 @@ export const Bubble = ({ obj, title, isButton = false, isEditing = false, onClic
                 ${isButton ? s.button : ''} 
                 ${isEditing ? s.edit : ''} 
                 ${isCurrent ? s.current : ''}
-                ${theme == 'dark' ? s.dark : s.light}
+                ${theme === 'dark' ? s.dark : s.light}
                 ${isAddable ? s.addable : ''}
                 `
             }

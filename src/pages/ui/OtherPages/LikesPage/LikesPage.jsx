@@ -4,25 +4,6 @@ import s from './LikesPage.module.scss'
 import { datingApi } from '../../../../shared/api/datingApi'
 import { useSelector } from 'react-redux'
 import { getId } from '../../../../entities/profile/ui/ProfileSummary/model/summarySelectors'
-import { ModalWindow } from '../../../../shared'
-
-const tempData = [
-    {
-        name: 'Катя',
-        age: '22',
-        img: 'https://img.freepik.com/free-photo/handsome-sensitive-man-portrait_23-2149509848.jpg?semt=ais_hybrid&w=740'
-    },
-    {
-        name: 'Алина',
-        age: '19',
-        img: 'https://tairtd.ru/upload/medialibrary/color_inspiration/white3.jpg'
-    },
-    {
-        name: 'Дарья',
-        age: '23',
-        img: 'https://www.biletik.aero/upload/medialibrary/807/807f262b60da392f1e09aa6d33f20a9b.png'
-    },
-]
 
 export const LikesPage = () => {
     const userId = useSelector(getId)

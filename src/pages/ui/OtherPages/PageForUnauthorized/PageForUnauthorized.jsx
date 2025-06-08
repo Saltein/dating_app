@@ -1,4 +1,4 @@
-import { DefaultDividerH, Message } from '../../../../shared'
+import { Message } from '../../../../shared'
 import { useTheme } from '../../../../shared/context/theme/ThemeContext'
 import s from './PageForUnauthorized.module.scss'
 import { HeroBlock } from './ui/HeroBlock/HeroBlock'
@@ -67,13 +67,13 @@ export const PageForUnauthorized = () => {
                 <div className={s.dialog} onClick={() => { navigate('/auth') }}>
                     {messages.map((message, index) => {
                         return (
-                            <div className={s.messageDiv} key={index} style={{justifyContent: message.user_id == -20 ? 'end' : 'start'}}>
+                            <div className={s.messageDiv} key={index} style={{justifyContent: message.user_id === -20 ? 'end' : 'start'}}>
                                 {
-                                    message.user_id == -10
+                                    message.user_id === -10
                                         ?
                                         <div className={s.message}>
                                             <div className={s.avatar}>
-                                                <img className={s.logo} src={iconProfile} />
+                                                <img className={s.logo} alt='logo' src={iconProfile} />
                                             </div>
                                             <Message
                                                 key={`${message.id} - ${index}`}
