@@ -18,8 +18,8 @@ export const ProfileCard = ({ isProfilePage = false, data, onAction }) => {
 
     if (data) {
         photo = data.photo
-        views = data.views || null
-        likes = data.likes || null
+        views = data.views || 0
+        likes = data.likes || 0
     }
 
     const handleLike = async () => {
