@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 import { useSelector } from 'react-redux';
 import { getId } from '../../../entities/profile/ui/ProfileSummary/model/summarySelectors';
 
-const socketUrl = process.env.REACT_APP_WS_URL || 'http://localhost:5000';
+const socketUrl = process.env.REACT_APP_WS_URL || 'http://26.159.115.15:5000';
 const WebSocketContext = createContext();
 
 export const WebSocketProvider = ({ children }) => {
