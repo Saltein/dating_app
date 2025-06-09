@@ -26,3 +26,14 @@
     justify-content: end;
     gap: $spacing-md;
 }
+
+.chatSpace {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.noChat {
+    margin: auto;
+}

@@ -13,4 +13,10 @@
     flex-direction: column;
     gap: $spacing-xs;
     justify-content: end;
+    scroll-behavior: auto !important;
+}
+
+.muted {
+    color: var(--color-muted);
+    margin: 0 auto;
 }

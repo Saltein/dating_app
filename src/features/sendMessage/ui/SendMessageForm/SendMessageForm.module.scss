@@ -4,6 +4,7 @@
     display: flex;
     height: 48px;
     gap: $spacing-md;
+    user-select: text;
 }
 
 .inputMessage {

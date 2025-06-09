@@ -21,11 +21,12 @@ export const SendMessageForm = () => {
         <div className={s.wrapper}>
             <div className={s.inputMessage}>
                 <input
+                    maxLength={4096}
                     className={s.input}
                     value={text}
                     onChange={e => setText(e.target.value)}
                     onKeyDown={e => e.key === 'Enter' && sendMessage()}
-                    placeholder="Type a message..."
+                    placeholder="Напиши сообщение..."
                 />
             </div>
             <SendIcon className={s.send} onClick={sendMessage} />
