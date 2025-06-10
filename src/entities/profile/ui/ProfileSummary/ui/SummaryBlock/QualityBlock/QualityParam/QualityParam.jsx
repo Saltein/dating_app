@@ -160,6 +160,7 @@ export const QualityParam = ({ defaultParam = '', options = [], name = '', Icon,
                             :
                             <>
                                 <input className={s.input}
+                                    maxLength={3}
                                     placeholder='Рост в см'
                                     onChange={(e) => dispatch(setHeight(filterAndClampHeight(e.target.value)))} />
                                 <div

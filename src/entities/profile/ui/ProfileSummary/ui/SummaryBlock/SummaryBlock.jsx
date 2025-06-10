@@ -8,7 +8,7 @@ import { ListModal } from '../ListModal/ListModal'
 import { useEffect, useState } from 'react'
 import { profileApi } from '../../../../../../shared/api/profileApi'
 
-export const SummaryBlock = ({ title = 'no title', params = [], isBubble = true, isEditing, paramKey }) => {
+export const SummaryBlock = ({ title = 'no title', params = [], isBubble = true, isEditing, paramKey, maxElements = 5 }) => {
     // Consts ----------------------------------------------------
     const dispatch = useDispatch()
 
@@ -119,7 +119,7 @@ export const SummaryBlock = ({ title = 'no title', params = [], isBubble = true,
             }
             {isModalOpen &&
                 <ModalWindow onClose={handleCloseModal}>
-                    <ListModal optionList={optionList} currentOptions={params} onClose={handleCloseModal} paramKey={paramKey} onDelete={handleRemove} title={title} />
+                    <ListModal optionList={optionList} currentOptions={params} onClose={handleCloseModal} paramKey={paramKey} onDelete={handleRemove} title={title} maxElements={maxElements} />
                 </ModalWindow>
             }
         </div>
