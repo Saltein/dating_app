@@ -71,7 +71,6 @@ export const ProfileCard = ({ isProfilePage = false, data, onAction }) => {
                 return
             }
             onAction()
-            console.log(response)
         } catch (error) {
             console.error('Ошибка скрытия анкеты:', error)
         }

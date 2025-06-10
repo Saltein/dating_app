@@ -65,7 +65,6 @@ export const ProfileSummary = ({ isProfilePage = false, dataObj, isDating = fals
 
     const handleSubmit = async () => {
         let newData = {...updatedData, interest_coefficient: computeProfileCompleteness(updatedData)}
-        console.log('newData', newData)
         try {
             const response = await profileApi.updateProfile(newData)
             if (!response) {
@@ -88,10 +87,6 @@ export const ProfileSummary = ({ isProfilePage = false, dataObj, isDating = fals
             window.removeEventListener('resize', checkScreenSize);
         };
     }, []);
-
-    useEffect(() => {
-        console.log('updatedData---------------------------------------', updatedData)
-    }, [updatedData])
 
     // Components ------------------------------------------------
     const Container = isMobile ? motion.div : 'div'

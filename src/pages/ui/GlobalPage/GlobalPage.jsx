@@ -23,7 +23,6 @@ export const GlobalPage = () => {
     const getProfile = async () => {
         try {
             const response = await profileApi.getProfile()
-            console.log('userProfile', response)
             if (response) {
                 dispatch(setAll(response))
             } else {

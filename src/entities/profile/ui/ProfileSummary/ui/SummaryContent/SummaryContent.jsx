@@ -33,11 +33,17 @@ export const SummaryContent = ({ data, isEditing = false, isDating = false }) =>
     };
 
     const handleChange = (e) => {
-        dispatch(setDescription(e.target.value));
-        isEditing && adjustHeight();
-    };
+        dispatch(setDescription(e.target.value))
+        isEditing && adjustHeight()
+    }
 
-    const handleAdd = () => fileInputRef.current?.click();
+    const handleAddPhoto = () => fileInputRef.current?.click()
+
+    const handleDeletePhoto = (photoUrl) => {
+        const updatedPhotos = allPhotos.filter(p => p !== photoUrl)
+        setAllPhotos(updatedPhotos)
+        profileApi.updateProfile({ photos: updatedPhotos }).catch(console.error)
+    }
 
     const onFileChange = async (e) => {
         const file = e.target.files?.[0];
@@ -54,7 +60,6 @@ export const SummaryContent = ({ data, isEditing = false, isDating = false }) =>
 
     useEffect(() => {
         dispatch(setPhotos(allPhotos))
-        console.log('dispatched')
     }, [allPhotos])
 
     return (
@@ -85,9 +90,8 @@ export const SummaryContent = ({ data, isEditing = false, isDating = false }) =>
 
             {isEditing && (
                 <div className={s.photoList}>
-                    {console.log('photos--------------', allPhotos)}
-                    {allPhotos.map((p, i) => <PhotoItem key={i} photo={p} handleAdd={handleAdd} />)}
-                    <PhotoItem photo={null} handleAdd={handleAdd} />
+                    {allPhotos.map((p, i) => <PhotoItem key={i} photo={p} handleDelete={handleDeletePhoto} />)}
+                    <PhotoItem photo={null} handleAdd={handleAddPhoto} photoCount={allPhotos.length} />
                 </div>
             )}
 
