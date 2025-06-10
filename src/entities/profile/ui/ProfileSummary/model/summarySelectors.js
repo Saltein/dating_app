@@ -4,6 +4,7 @@ export const getId = (state) => state.summary.id
 export const getName = (state) => state.summary.name
 export const getAge = (state) => state.summary.age
 export const getDescription = (state) => state.summary.description
+export const getUserGender = (state) => state.summary.gender
 
 // Новые единичные «качества»
 export const getMaritalStatus = (state) => state.summary.marital_status

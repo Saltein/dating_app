@@ -1,7 +1,7 @@
 import s from './DatingPage.module.scss'
 import { ProfileCard, ProfileSummary } from '../../../../entities'
 import { useDispatch, useSelector } from 'react-redux'
-import { getId } from '../../../../entities/profile/ui/ProfileSummary/model/summarySelectors'
+import { getId, getUserGender } from '../../../../entities/profile/ui/ProfileSummary/model/summarySelectors'
 import { datingApi } from '../../../../shared/api/datingApi'
 import { useEffect, useState } from 'react'
 import { getProfilesQueuePos, resetProfilesQueuePos } from '../../../../features/dating/model/profilesSlice'
@@ -9,6 +9,7 @@ import { DefaultButton } from '../../../../shared'
 
 export const DatingPage = () => {
     const userId = useSelector(getId)
+    const userGender = useSelector(getUserGender)
     const queuePos = useSelector(getProfilesQueuePos)
 
     const dispatch = useDispatch()
@@ -17,7 +18,7 @@ export const DatingPage = () => {
 
     const fetchProfiles = async () => {
         try {
-            const response = await datingApi.getTenProfiles(userId)
+            const response = await datingApi.getTenProfiles(userId, userGender)
             if (!response) {
                 console.log('Неизвестная ошибка получения профилей')
                 return

@@ -86,6 +86,7 @@ export const InputCode = ({ email, setState }) => {
                 <DefaultButton
                     title={isCodeSent ? 'Проверить код' : 'Получить проверочный код'}
                     onClick={isCodeSent ? handleCheckCode : handleSendCode}
+                    active={email ? true : false}
                 />
             </div>
             {error && <WarningMessage type='error' message={error} />}

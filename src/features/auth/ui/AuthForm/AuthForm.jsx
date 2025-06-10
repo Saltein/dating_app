@@ -4,9 +4,11 @@ import s from './AuthForm.module.scss'
 import { useTheme } from '../../../../shared/context/theme/ThemeContext';
 import { InputCode } from '../../..';
 import { authApi } from '../../../../shared/api/authApi';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../model/authActions';
 import { useNavigate } from 'react-router-dom';
+import { OptionSwitcher } from './OptionSwitcher/OptionSwitcher';
+import { getGender, setGender } from '../../model/authSlice';
 
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -26,6 +28,19 @@ export const AuthForm = ({ inputs = [], buttonTitle, isLogin, setCurrentTab, tab
     );
     const [isCodeVerified, setCodeVerified] = useState(false)
     const [error, setError] = useState('')
+
+    const gender = useSelector(getGender)
+
+    const genderOptions = [
+        {
+            id: 0,
+            name: 'Мужчина'
+        },
+        {
+            id: 1,
+            name: 'Женщина'
+        },
+    ]
 
     const handleOnChange = (e) => {
         const { name, value } = e.target;
@@ -52,7 +67,7 @@ export const AuthForm = ({ inputs = [], buttonTitle, isLogin, setCurrentTab, tab
     const handleRegister = async () => {
         setError('')
 
-        const allFieldsFilled = Object.values(formData).every(value => value.trim() !== '');
+        const allFieldsFilled = Object.values(formData).every(value => value.trim() !== '') && gender.id !== null;
         if (!allFieldsFilled) {
             setError('Заполните все поля!')
             return;
@@ -74,16 +89,16 @@ export const AuthForm = ({ inputs = [], buttonTitle, isLogin, setCurrentTab, tab
         }
 
         try {
-            let response = await authApi.register(formData);
+            console.log("Успешная (тест) регистрация", { ...formData, gender: gender.name === 'Мужчина' ? 'M' : 'F' })
+            let response = await authApi.register({ ...formData, gender: gender.name === 'Мужчина' ? 'M' : 'F' });
             if (response) {
-                console.log("Успешная (тест) регистрация", formData, response)
                 setCurrentTab(tabs[0])
             } else {
                 setError("Ошибка регистрации")
             }
         } catch (error) {
-            console.error('Ошибка регистрации:', error.message);
-            setError(`Ошибка регистрации: ${error.message}`)
+            console.error('Ошибка регистрации:', error);
+            setError(`Ошибка регистрации: ${error}`)
         }
     }
 
@@ -92,17 +107,23 @@ export const AuthForm = ({ inputs = [], buttonTitle, isLogin, setCurrentTab, tab
 
         try {
             const { email, password } = formData;
-            await dispatch(loginUser({ email, password }));
-            navigate('/dating')
+            await dispatch(loginUser({ email, password }, navigate, setError))
         } catch (error) {
-            console.error('Ошибка авторизации:', error.message);
+            console.error('Ошибка авторизации:', error.message)
             setError(`Ошибка авторизации: ${error.message}`)
         }
+    }
+
+    const handleChooseGender = (gender) => {
+        dispatch(setGender(gender))
     }
 
     return (
         <div className={s.wrapper}>
             <div className={s.inputs}>
+                {!isLogin &&
+                    <OptionSwitcher optionList={genderOptions} onChoose={handleChooseGender} defaultOption={gender} />
+                }
                 {inputs.map((input, index) => {
                     return (
                         input.name !== 'code'
@@ -120,7 +141,9 @@ export const AuthForm = ({ inputs = [], buttonTitle, isLogin, setCurrentTab, tab
             </div>
 
             {error && <WarningMessage type='error' message={error} />}
-            <DefaultButton title={buttonTitle} color={'#8a4fff'} onClick={isLogin ? handleLogin : handleRegister} />
+            <DefaultButton title={buttonTitle} color={'#8a4fff'}
+                onClick={isLogin ? handleLogin : handleRegister}
+                active={isLogin ? (formData.email && formData.password) : isCodeVerified} />
         </div>
     )
 }

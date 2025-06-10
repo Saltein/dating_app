@@ -20,10 +20,18 @@
 
 .wrapper.dark {
     background-color: var(--color-primary);
+
+    &.disabled {
+        background-color: var(--color-disabled);
+    }
 }
 
 .wrapper.light {
     background-color: var(--color-accent);
+
+    &.disabled {
+        background-color: var(--color-disabled);
+    }
 }
 
 .wrapper.dark:hover {
@@ -46,6 +54,28 @@
     filter: brightness(1.3);
     transform: scale(0.97);
     transition: background-color $transition-fast, transform 0.05s;
+}
+
+.wrapper.dark.disabled:hover {
+    cursor: auto;
+    background-color: var(--color-disabled);
+}
+
+.wrapper.light.disabled:hover {
+    cursor: auto;
+    background-color: var(--color-disabled);
+}
+
+.wrapper.dark.disabled:active {
+    filter: brightness(1);
+    transform: scale(1);
+    background-color: var(--color-disabled);
+}
+
+.wrapper.light.disabled:active {
+    filter: brightness(1);
+    transform: scale(1);
+    background-color: var(--color-disabled);
 }
 
 .shine {

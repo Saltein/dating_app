@@ -5,6 +5,7 @@ const initialState = {
     name: '',
     age: null,
     description: '',
+    gender: '',
 
     // Новые единичные «качества»
     marital_status: null,
@@ -42,6 +43,9 @@ const summarySlice = createSlice({
         },
         setDescription: (state, action) => {
             state.description = action.payload
+        },
+        setUserGender: (state, action) => {
+            state.gender = action.payload
         },
 
         // Новые единственные «качества»
@@ -98,6 +102,7 @@ const summarySlice = createSlice({
                 name,
                 age,
                 description,
+                gender,
                 marital_status,
                 smoking_attitude,
                 alcohol_attitude,
@@ -118,6 +123,7 @@ const summarySlice = createSlice({
             state.name = name
             state.age = age
             state.description = description
+            state.gender = gender
 
             state.marital_status = marital_status
             state.smoking_attitude = smoking_attitude
@@ -158,6 +164,7 @@ export const {
     setName,
     setAge,
     setDescription,
+    setUserGender,
     setMaritalStatus,
     setSmokingAttitude,
     setAlcoholAttitude,

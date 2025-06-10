@@ -6,12 +6,11 @@ export const DefaultButton = ({ title, onClick, height = '48px', width, active =
 
     return (
         <div
-            className={`${s.wrapper} ${theme === 'dark' ? s.dark : s.light}`}
-            onClick={onClick}
+            className={`${s.wrapper} ${theme === 'dark' ? s.dark : s.light} ${!active ? s.disabled : ''}`}
+            onClick={active ? onClick : () => {}}
             style={{
                 height: height,
                 width: width,
-                backgroundColor: !active ? 'var(--color-disabled)' : ''
             }}
         >
             {active &&

@@ -1,7 +1,7 @@
 const BASE_URL = process.env.REACT_APP_BASE_URL;;
 
 export const datingApi = {
-    async getTenProfiles(user_id) {
+    async getTenProfiles(user_id, user_gender) {
         try {
             const response = await fetch(`${BASE_URL}/dating/other-profiles`, {
                 method: 'POST',
@@ -11,6 +11,7 @@ export const datingApi = {
                 },
                 body: JSON.stringify({
                     viewerId: user_id,
+                    viewerGender: user_gender,
                 }),
             });
 
