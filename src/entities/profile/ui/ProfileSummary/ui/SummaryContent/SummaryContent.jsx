@@ -1,80 +1,96 @@
-import s from './SummaryContent.module.scss'
-import { useEffect, useRef } from 'react'
-import { useDispatch } from 'react-redux'
-import { SummaryBlock } from '../SummaryBlock/SummaryBlock'
-import { PhotoItem } from './PhotoItem/PhotoItem'
-import { setDescription } from '../../model/summarySlice'
-import { QualityBlock } from '../SummaryBlock/QualityBlock/QualityBlock'
+import { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import s from './SummaryContent.module.scss';
+import { SummaryBlock } from '../SummaryBlock/SummaryBlock';
+import { PhotoItem } from './PhotoItem/PhotoItem';
+import { setDescription, setPhotos } from '../../model/summarySlice';
+import { QualityBlock } from '../SummaryBlock/QualityBlock/QualityBlock';
+import { profileApi } from '../../../../../../shared/api/profileApi';
 
 export const SummaryContent = ({ data, isEditing = false, isDating = false }) => {
-    // Consts ----------------------------------------------------
-    const descriptionRef = useRef()
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const descriptionRef = useRef();
+    const fileInputRef = useRef();
+    const [allPhotos, setAllPhotos] = useState(data.photo || []);
+    useEffect(() => {
+        if (isEditing) adjustHeight();
+    }, [isEditing])
 
-    // Functions -------------------------------------------------
-    const hasContent = (value) => {
-        if (isEditing) return true
-        if (Array.isArray(value)) return value.length > 0
-        if (typeof value === 'object' && value !== null) return Object.values(value).some(
-            val => Array.isArray(val) ? val.length > 0 : !!val
-        )
-        return !!value
-    }
+    useEffect(() => {
+        setAllPhotos(data.photo)
+    }, [])
 
     const adjustHeight = () => {
-        const textarea = descriptionRef.current;
-
-        textarea.style.height = 'auto';
-        textarea.style.height = `${textarea.scrollHeight - 16}px`;
+        const ta = descriptionRef.current;
+        if (!ta) return;
+        ta.style.height = 'auto';
+        ta.style.height = `${ta.scrollHeight - 16}px`;
     };
 
-    // Handlers --------------------------------------------------
-    const handleAdd = () => {
-        console.log('handleAdd')
-    }
+    const hasContent = (v) => {
+        if (isEditing) return true;
+        return Array.isArray(v) ? v.length > 0 : !!v;
+    };
 
     const handleChange = (e) => {
-        dispatch(setDescription(e.target.value))
-        isEditing && adjustHeight()
-    }
+        dispatch(setDescription(e.target.value));
+        isEditing && adjustHeight();
+    };
 
-    // Effects ---------------------------------------------------
+    const handleAdd = () => fileInputRef.current?.click();
+
+    const onFileChange = async (e) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        try {
+            const url = await profileApi.uploadPhoto(file);
+            const newPhotos = [...allPhotos, url];
+            setAllPhotos(newPhotos)
+            await profileApi.updateProfile({ photos: newPhotos });
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
     useEffect(() => {
-        isEditing && adjustHeight()
-    }, [])
+        dispatch(setPhotos(allPhotos))
+        console.log('dispatched')
+    }, [allPhotos])
 
     return (
         <div className={s.wrapper}>
+            <input
+                type="file"
+                accept="image/*"
+                ref={fileInputRef}
+                style={{ display: 'none' }}
+                onChange={onFileChange}
+            />
+
             {isEditing ? (
-                <>
-                    <textarea
-                        maxLength={512}
-                        className={s.description}
-                        ref={descriptionRef}
-                        value={data.description || ''}
-                        spellCheck="false"
-                        onChange={handleChange}
-                        onInput={adjustHeight}
-                    />
-                </>
+                <textarea
+                    ref={descriptionRef}
+                    className={s.description}
+                    maxLength={512}
+                    value={data.description || ''}
+                    spellCheck="false"
+                    onChange={handleChange}
+                    onInput={adjustHeight}
+                />
             ) : (
                 <div className={s.description}>
-                    {data.description || (
-                        <span className={s.placeholder}>Расскажите о себе...</span>
-                    )}
+                    {data.description || <span className={s.placeholder}>Расскажите о себе...</span>}
                 </div>
             )}
 
-            {isEditing && hasContent(data.photo) &&
+            {isEditing && (
                 <div className={s.photoList}>
-                    {data.photo.map((photo, index) => {
-                        return (
-                            <PhotoItem photo={photo} key={index} handleAdd={handleAdd} />
-                        )
-                    })}
-                    <PhotoItem />
+                    {console.log('photos--------------', allPhotos)}
+                    {allPhotos.map((p, i) => <PhotoItem key={i} photo={p} handleAdd={handleAdd} />)}
+                    <PhotoItem photo={null} handleAdd={handleAdd} />
                 </div>
-            }
+            )}
+
             {(hasContent(data.alcohol_attitude) ||
                 hasContent(data.children_attitude) ||
                 hasContent(data.height) ||

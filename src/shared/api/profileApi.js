@@ -71,4 +71,20 @@ export const profileApi = {
             throw error
         }
     },
+
+    async uploadPhoto(photoFile) {
+        const formData = new FormData();
+        formData.append('avatar', photoFile);
+
+        const res = await fetch(`${BASE_URL}/profile/upload-photo`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: formData
+        });
+        if (!res.ok) throw new Error('Photo upload failed');
+        const data = await res.json();
+        return data.url;
+    }
 }

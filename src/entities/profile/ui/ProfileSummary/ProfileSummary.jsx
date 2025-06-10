@@ -41,12 +41,12 @@ export const ProfileSummary = ({ isProfilePage = false, dataObj, isDating = fals
         physical_activity_id: useSelector(getPhysicalActivity),
         children_attitude_id: useSelector(getChildrenAttitude),
         height_cm: useSelector(getHeight),
-    };
+    }
 
     // States (local) --------------------------------------------
-    const [isOpen, setIsOpen] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
-    const [isEditMode, setIsEditMode] = useState(false);
+    const [isOpen, setIsOpen] = useState(false)
+    const [isMobile, setIsMobile] = useState(false)
+    const [isEditMode, setIsEditMode] = useState(false)
 
     // Handlers --------------------------------------------------
     const handleTap = () => {
@@ -88,6 +88,10 @@ export const ProfileSummary = ({ isProfilePage = false, dataObj, isDating = fals
             window.removeEventListener('resize', checkScreenSize);
         };
     }, []);
+
+    useEffect(() => {
+        console.log('updatedData---------------------------------------', updatedData)
+    }, [updatedData])
 
     // Components ------------------------------------------------
     const Container = isMobile ? motion.div : 'div'
