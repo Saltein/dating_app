@@ -33,6 +33,7 @@ export const profileApi = {
                 },
                 body: JSON.stringify(profileData)
             });
+            console.log('profileData', profileData)
 
             if (!response.ok) {
                 throw new Error('Failed to update profile')

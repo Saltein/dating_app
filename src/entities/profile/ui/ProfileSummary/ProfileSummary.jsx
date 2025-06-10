@@ -17,6 +17,7 @@ import {
     getPhysicalActivity,
     getSmokingAttitude
 } from '../../../../entities/profile/ui/ProfileSummary/model/summarySelectors'
+import { computeProfileCompleteness, evaluateDescriptionQuality } from '../../../../shared/lib/algorithmEvaluatingInterlocutor/algorithmEvaluatingInterlocutor'
 
 export const ProfileSummary = ({ isProfilePage = false, dataObj, isDating = false }) => {
 
@@ -63,8 +64,10 @@ export const ProfileSummary = ({ isProfilePage = false, dataObj, isDating = fals
     }
 
     const handleSubmit = async () => {
+        let newData = {...updatedData, interest_coefficient: computeProfileCompleteness(updatedData)}
+        console.log('newData', newData)
         try {
-            const response = await profileApi.updateProfile(updatedData)
+            const response = await profileApi.updateProfile(newData)
             if (!response) {
                 console.log('Неизвестная ошибка обновления данных')
             }
