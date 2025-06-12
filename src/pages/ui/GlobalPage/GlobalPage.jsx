@@ -10,6 +10,8 @@ import { buttonsList } from './lib/navButtonsList'
 import { profileApi } from '../../../shared/api/profileApi'
 import { setAll } from '../../../entities/profile/ui/ProfileSummary/model/summarySlice'
 import { useEffect } from 'react'
+import { isTokenExpired } from '../../../shared/lib/checkTokenExpiration'
+import { clearToken } from '../../../entities/user/model/slice'
 
 export const GlobalPage = () => {
     const location = useLocation()
@@ -40,7 +42,8 @@ export const GlobalPage = () => {
     }, [token])
 
     useEffect(() => {
-        if (!token) {
+        if (!token || isTokenExpired(token)) {
+            if (isTokenExpired(token)) dispatch(clearToken())
             navigate('/welcome')
         }
     }, [token])
