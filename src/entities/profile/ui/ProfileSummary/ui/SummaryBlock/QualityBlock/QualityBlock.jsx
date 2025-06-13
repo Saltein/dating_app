@@ -45,7 +45,7 @@ export const QualityBlock = ({ title = '', params, isEditing = false, isDating =
             <div className={s.params}>
                 {(params.marital_status || isEditing) &&
                     <QualityParam defaultParam='Семейное положение' param={params.marital_status} Icon={HeartIcon}
-                        options={options.marital_status} name='M' isEditing={isEditing} isDating={isDating} />}
+                        options={options.marital_status} name='M' isEditing={isEditing} isDating={isDating} profileGender={params.gender} />}
                 {(params.height || isEditing) &&
                     <QualityParam defaultParam='Какого ты роста?' param={params.height} Icon={HeightIcon}
                         name='H' isEditing={isEditing} isDating={isDating} />}

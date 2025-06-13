@@ -6,7 +6,7 @@ import { setAlcoholAttitude, setChildrenAttitude, setHeight, setMaritalStatus, s
 import { getAlcoholAttitude, getChildrenAttitude, getHeight, getMaritalStatus, getPhysicalActivity, getSmokingAttitude, getUserGender } from '../../../../model/summarySelectors'
 import { WarningMessage } from '../../../../../../../../shared'
 
-export const QualityParam = ({ defaultParam = '', options = [], name = '', Icon, isEditing = false, param, isDating = false }) => {
+export const QualityParam = ({ defaultParam = '', options = [], name = '', Icon, isEditing = false, param, isDating = false, profileGender }) => {
     const [currentParam, setCurrentParam] = useState({ id: 0, value: defaultParam })
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0, width: 0 })
@@ -117,7 +117,9 @@ export const QualityParam = ({ defaultParam = '', options = [], name = '', Icon,
                 onClick={openMenu}
             >
                 <Icon className={s.icon} />
-                {getDisplayValue()}
+                {isDating
+                    ? (getDisplayValue() === 'Свободен' && profileGender === 'F' ? 'Свободна' : getDisplayValue())
+                    : (getDisplayValue() === 'Свободен' && gender === 'F' ? 'Свободна' : getDisplayValue())}
             </div>
 
             {isMenuOpen &&
