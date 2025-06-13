@@ -8,43 +8,43 @@ import { useNavigate } from 'react-router-dom'
 const messages = [
     {
         id: 5234,
-        user_id: -20,
+        sender_id: -20,
         content: 'Что за приложение такое? Это вообще работает?',
         sent_at: '2025-04-27 15:35:51.913506+03',
     },
     {
         id: 5223,
-        user_id: -10,
+        sender_id: -10,
         content: 'О, ещё как! Это РайтСвайп — место, где случайные лайки превращаются в настоящие встречи, а "Привет!" может стать началом чего‑то особенного.',
         sent_at: '2025-04-27 15:35:51.913506+03',
     },
     {
         id: 2734,
-        user_id: -20,
+        sender_id: -20,
         content: 'Но мне лень заполнять 100500 полей.',
         sent_at: '2025-04-27 15:36:51.913506+03',
     },
     {
         id: 5834,
-        user_id: -10,
+        sender_id: -10,
         content: 'Спокойно! Мы не допрос. Пара кликов — и ты уже в деле. Хочешь — расскажи о себе больше, хочешь — оставь немного загадки. Мы уважаем твой стиль.',
         sent_at: '2025-04-27 15:36:51.913506+03',
     },
     {
         id: 2734,
-        user_id: -20,
+        sender_id: -20,
         content: 'А как вы вообще кого-то подбираете?',
         sent_at: '2025-04-27 15:37:51.913506+03',
     },
     {
         id: 5223,
-        user_id: -10,
+        sender_id: -10,
         content: 'Магия... ну или почти. Мы учитываем твои интересы, цели, местоположение и предпочтения. Алгоритм старается, чтобы ты не просто смотрел на фото, а находил максимально интересных людей.',
         sent_at: '2025-04-27 15:38:51.913506+03',
     },
     {
         id: 2734,
-        user_id: -20,
+        sender_id: -20,
         content: 'Звучит круто! Пожалуй зарегистрируюсь!',
         sent_at: '2025-04-27 15:38:51.913506+03',
     },
@@ -67,7 +67,7 @@ export const PageForUnauthorized = () => {
                 <div className={s.dialog} onClick={() => { navigate('/auth') }}>
                     {messages.map((message, index) => {
                         return (
-                            <div className={s.messageDiv} key={index} style={{justifyContent: message.user_id === -20 ? 'end' : 'start'}}>
+                            <div className={s.messageDiv} key={index} style={{justifyContent: message.sender_id === -20 ? 'end' : 'start'}}>
                                 {
                                     message.user_id === -10
                                         ?

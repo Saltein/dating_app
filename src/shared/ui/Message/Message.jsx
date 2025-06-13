@@ -8,7 +8,7 @@ import { useLayoutEffect, useRef, useState } from 'react'
 export const Message = ({ messageData }) => {
     const userId = useSelector(getId)
     const theme = useTheme().theme
-    const isMyMessage = (userId === messageData.user_id) || (messageData.user_id === -20)
+    const isMyMessage = (userId === messageData.sender_id) || (messageData.sender_id === -20)
 
     const [mode, setMode] = useState('single');
     const msgRef = useRef(null);
