@@ -1,3 +1,4 @@
+import { setId } from '../../../entities/profile/ui/ProfileSummary/model/summarySlice';
 import { setToken, clearToken } from '../../../entities/user/model/slice'
 import { authApi } from '../../../shared/api/authApi'
 
@@ -17,5 +18,6 @@ export const loginUser = (credentials, navigate, setError) => async (dispatch) =
 
 export const logoutUser = () => (dispatch) => {
     localStorage.removeItem('token')
+    dispatch(setId(null))
     dispatch(clearToken())
 };
