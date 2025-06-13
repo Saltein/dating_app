@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useTheme } from '../../../../../shared/context/theme/ThemeContext'
 
 export const OptionSwitcher = ({ title, optionList = [], onChoose = () => console.log('пропс onChoose пуст'), defaultOption = { id: null, name: ''} }) => {
-    const theme = useTheme()
+    const theme = useTheme().theme
 
     const [currentOption, setCurrentOption] = useState(defaultOption)
 

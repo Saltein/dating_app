@@ -1,6 +1,6 @@
 import s from './ProfilePage.module.scss'
 import { ProfileCard, ProfileSummary } from '../../../../entities'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
     getAge, getAlcoholAttitude, getBooks, getChildrenAttitude, getDescription,
     getFilms,
@@ -14,13 +14,19 @@ import {
     getPhysicalActivity,
     getSmokingAttitude, getViews
 } from '../../../../entities/profile/ui/ProfileSummary/model/summarySelectors'
+import { useEffect } from 'react'
+import { profileApi } from '../../../../shared/api/profileApi'
+import { setAll } from '../../../../entities/profile/ui/ProfileSummary/model/summarySlice'
 
 export const ProfilePage = () => {
+    const dispatch = useDispatch()
+
     const cardData = {
         photo: useSelector(getPhotos),
         likes: useSelector(getLikes),
         views: useSelector(getViews),
     }
+    console.log('cardData', cardData)
 
     const summaryData = {
         id: useSelector(getId),
@@ -42,6 +48,20 @@ export const ProfilePage = () => {
         height: useSelector(getHeight),
         photo: useSelector(getPhotos),
     }
+
+    useEffect(() => {
+        const fetchProfile = async () => {
+            try {
+                const response = await profileApi.getProfile();
+                if (response) {
+                    dispatch(setAll(response));
+                }
+            } catch (error) {
+                console.error("Ошибка загрузки профиля", error);
+            }
+        };
+        fetchProfile();
+    }, [dispatch]);
 
     return (
         <div className={s.wrapper}>

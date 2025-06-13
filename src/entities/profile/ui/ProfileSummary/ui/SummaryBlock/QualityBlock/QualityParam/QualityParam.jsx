@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom'
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setAlcoholAttitude, setChildrenAttitude, setHeight, setMaritalStatus, setPhysicalActivity, setSmokingAttitude } from '../../../../model/summarySlice'
-import { getAlcoholAttitude, getChildrenAttitude, getHeight, getMaritalStatus, getPhysicalActivity, getSmokingAttitude } from '../../../../model/summarySelectors'
+import { getAlcoholAttitude, getChildrenAttitude, getHeight, getMaritalStatus, getPhysicalActivity, getSmokingAttitude, getUserGender } from '../../../../model/summarySelectors'
 import { WarningMessage } from '../../../../../../../../shared'
 
 export const QualityParam = ({ defaultParam = '', options = [], name = '', Icon, isEditing = false, param, isDating = false }) => {
@@ -11,6 +11,8 @@ export const QualityParam = ({ defaultParam = '', options = [], name = '', Icon,
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0, width: 0 })
     const [warning, setWarning] = useState('')
+
+    const gender = useSelector(getUserGender)
 
     const currentParams = {
         M: useSelector(getMaritalStatus),
@@ -144,7 +146,7 @@ export const QualityParam = ({ defaultParam = '', options = [], name = '', Icon,
                                             onChoose(option)
                                         }}
                                     >
-                                        {option.title}
+                                        {(option.title === 'Свободен' && gender === 'F') ? 'Свободна' : option.title}
                                     </div>
                                 ))}
                                 <div

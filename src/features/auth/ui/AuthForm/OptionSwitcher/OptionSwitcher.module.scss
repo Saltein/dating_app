@@ -31,7 +31,7 @@
     &:hover {
         background-color: var(--brightness-hover);
         transition: $transition-fast;
-        animation: pulse 0.5s infinite;
+        transform: scaleX(0.97);
     }
 
     &:active {

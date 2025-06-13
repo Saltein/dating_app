@@ -23,6 +23,7 @@ export const GlobalPage = () => {
     const token = useSelector(selectToken)
 
     const getProfile = async () => {
+        console.log('getProfile')
         try {
             const response = await profileApi.getProfile()
             if (response) {

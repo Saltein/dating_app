@@ -12,15 +12,7 @@ export const ProfileCard = ({ isProfilePage = false, data, onAction }) => {
 
     const userId = useSelector(getId)
 
-    let photo
-    let views
-    let likes
-
-    if (data) {
-        photo = data.photo
-        views = data.views || 0
-        likes = data.likes || 0
-    }
+    const {photo, views, likes} = data
 
     const handleLike = async () => {
         try {
